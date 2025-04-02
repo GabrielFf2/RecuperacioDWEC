@@ -59,6 +59,15 @@ body {
     text-decoration: none;
 }
 
+#result-container{
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
 .result-item {
     display: flex;
     justify-content: space-between;
@@ -73,5 +82,7 @@ body {
 
     white-space: pre-line;
 }
-
+.cercar{
+    margin-bottom: 20px;
+}
 
