@@ -12,9 +12,9 @@ body {
 }
 .key {
     width: 40px;
-    height: 150px;
+    height: 180px;
     margin: 2px;
-    border: 1px solid #000;
+    border: 1px solid black;
     display: inline-block;
     cursor: pointer;
     font-size: 16px;
@@ -36,19 +36,42 @@ body {
     margin: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
-    padding-bottom: 30px;
+    padding: 20px;
 }
+
 .button {
     background: red;
     color: white;
-    padding: 10px;
+    padding: 10px 10px;
     border: none;
     cursor: pointer;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-
+    border-radius: 5px;
+    margin-top: 10px;
 }
+
 .lyric {
     color: red;
+    text-decoration: none;
 }
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 10px;
+}
+
+.result-item p a {
+    display: flex;
+
+    white-space: pre-line;
+}
+
+
