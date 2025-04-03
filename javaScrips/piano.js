@@ -6,7 +6,7 @@ let partitures = [
     { nom: "Happy Birthday", notes: ["DO", "DO", "RE", "DO", "FA", "MI", "DO", "DO", "RE", "DO", "SOL", "FA"] }
 ];
 
-function addCerca(nom, sostingut = false) {
+function addCerca(nom, sostingut) {
     cerca.push(new Nota(nom, sostingut));
 }
 
