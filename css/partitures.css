@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #da352f;
+    color: white;
+    align-items: center;
+    text-align: center;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.btn {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}
+.edit-btn {
+    background: none;
+    color: black;
+    margin-right: 20px;
+}
+.delete-btn {
+    background: none;
+    color: black;
+}
+
+h2{
+    color: white;
+    align-content: center;
+    margin: 30px auto;
+    width: 80%;
+    height: 40px;
+    background: #da352f;
+}
+
+header {
+    background: #da352f;
+    width: 90%;
+    margin: auto;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+}
+
+header h1 {
+    font-weight: bold;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+nav {
+    display: flex;
+    gap: 10px;
+}

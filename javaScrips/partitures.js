@@ -1,6 +1,3 @@
-import { Nota } from "./class/Nota.js";
-
-let cerca = [];
 const partitures = [
     { titol: "La Balanguera", idioma: "ca" , notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL", "LA#", "LA#"] },
     { titol: "Merry Christmas", idioma: "en"  , notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL", "LA#", "LA#"] },
@@ -35,42 +32,62 @@ const partitures = [
 ];
 
 
-function addCerca(nom, sostingut) {
-    cerca.push(new Nota(nom, sostingut));
+function generarDades() {
+    const dades = [];
+    for (let i = 0; i < 100; i++) {
+        dades.push(partitures[i % partitures.length]);
+    }
+    return dades;
 }
 
-function cercador() {
-    const input = document.querySelector('.cercador').value.toUpperCase();
-    const resultContainer = document.getElementById('result-container');
-    resultContainer.innerHTML = '';
+function crearTaula() {
+    const container = document.getElementById("table-container");
 
-    partitures.forEach(partitura => {
-        if (partitura.notes.join('').includes(input.replace(/\s+/g, ''))) {
-            const resultItem = document.createElement('div');
-            resultItem.className = 'result-item';
-            resultItem.innerHTML = `
-                <p>${partitura.nom} <a class="lyric">Lletra</a></p>
-                <button class="button reproduir">Reproduir cançó</button>
+    const taula = document.createElement("table");
+    taula.id = "partituresTable";
+
+    taula.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Títol</th>
+                        <th>Idioma Original</th>
+                        <th>Accions</th>
+                    </tr>
+                </thead>
             `;
-            resultContainer.appendChild(resultItem);
-        }
+
+    const tbody = document.createElement("tbody");
+    const dades = generarDades();
+
+    dades.forEach((partitura) => {
+        const fila = document.createElement("tr");
+
+        const tdTitol = document.createElement("td");
+        tdTitol.textContent = partitura.titol;
+        fila.appendChild(tdTitol);
+
+        const tdIdioma = document.createElement("td");
+        tdIdioma.textContent = partitura.idioma;
+        fila.appendChild(tdIdioma);
+
+        const tdAccions = document.createElement("td");
+
+        const btnEditar = document.createElement("button");
+        btnEditar.textContent = "✏️ Editar";
+        btnEditar.classList.add("btn", "edit-btn");
+
+        const btnEsborrar = document.createElement("button");
+        btnEsborrar.textContent = "🗑️ Esborrar";
+        btnEsborrar.classList.add("btn", "delete-btn");
+
+        tdAccions.appendChild(btnEditar);
+        tdAccions.appendChild(btnEsborrar);
+        fila.appendChild(tdAccions);
+        tbody.appendChild(fila);
     });
+
+    taula.appendChild(tbody);
+    container.appendChild(taula);
 }
 
-document.querySelectorAll(".key").forEach(button => {
-    button.addEventListener("click", () => {
-        let nota = button.classList[0].toUpperCase();
-        let sostingut = button.classList.contains("black");
-        addCerca(nota, sostingut);
-        console.log("Cerca actual:", cerca.map(n => n.nom));
-    });
-});
-
-document.querySelector(".borrar").addEventListener("click", () => {
-    cerca = [];
-    document.querySelector('.cercador').value = '';
-    document.getElementById('result-container').innerHTML = '';
-    console.log("Cerca esborrada");
-});
-
-document.querySelector('.cercar').addEventListener('click', cercador);
+window.onload = crearTaula;
