@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-image: url("./imgs/fusta.jpg");}
+    background-image: url("../imgs/fusta.jpg");}
 .piano {
     display: flex;
     justify-content: center;

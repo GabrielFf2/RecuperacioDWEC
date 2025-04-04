@@ -49,7 +49,7 @@ function cercador() {
             const resultItem = document.createElement('div');
             resultItem.className = 'result-item';
             resultItem.innerHTML = `
-                <p>${partitura.nom} <a class="lyric">Lletra</a></p>
+                <p>${partitura.titol} <a class="lyric">Lletra</a></p>
                 <button class="button reproduir">Reproduir cançó</button>
             `;
             resultContainer.appendChild(resultItem);
