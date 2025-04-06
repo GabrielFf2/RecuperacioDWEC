@@ -2,8 +2,8 @@ import { Nota } from "./class/Nota.js";
 
 let cerca = [];
 const partitures = [
-    { id: 1, titol: "La Balanguera", idioma: "ca" , notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL", "LA#", "LA#"] },
-    { id: 2, titol: "Merry Christmas", idioma: "en"  , notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL", "LA#", "LA#"] },
+    { id: 1, titol: "La Balanguera", idioma: "ca" , notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL"] },
+    { id: 2, titol: "Merry Christmas", idioma: "en"  , notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL"] },
     { id: 3, titol: "Frère Jacques", idioma: "fr" , notes: ["DO", "DO", "RE", "DO", "FA", "MI", "DO", "DO", "RE", "DO", "SOL", "FA"] },
     { id: 4, titol: "Sant Antoni i el Dimoni", idioma: "ca" ,  notes: ["DO", "DO", "RE", "DO", "FA", "MI", "DO", "DO", "RE", "DO", "SOL", "FA"] },
     { id: 5, titol: "Ode to Joy", idioma: "de", notes: ["MI", "MI", "FA", "SOL", "SOL", "FA", "MI", "RE", "DO", "DO", "RE", "MI", "MI", "RE", "RE"] },
@@ -39,6 +39,34 @@ function addCerca(nom, sostingut) {
     cerca.push(new Nota(nom, sostingut));
 }
 
+function reproduirPartitura(notes, button) {
+    let delay = 0;
+    const duracio = notes.length * 1000;
+
+    let tempsFaltant = duracio / 1000;
+    button.textContent = `${tempsFaltant}s`;
+    const interval = setInterval(() => {
+        tempsFaltant -= 0.1;
+        button.textContent = `${tempsFaltant.toFixed(2)}s`;
+    }, 100);
+
+    notes.forEach(nota => {
+        setTimeout(() => {
+            const audio = document.getElementById(`audio-${nota}`);
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        }, delay);
+        delay += 1000;
+    });
+
+    setTimeout(() => {
+        clearInterval(interval);
+        button.textContent = 'Reproduir cançó';
+    }, duracio);
+}
+
 function cercador() {
     const input = document.querySelector('.cercador').value.toUpperCase();
     const resultContainer = document.getElementById('result-container');
@@ -56,25 +84,36 @@ function cercador() {
 
             const reproduirButton = resultItem.querySelector('.reproduir');
             reproduirButton.addEventListener('click', () => {
-                reproduirPartitura(partitura.notes);
+                reproduirPartitura(partitura.notes, reproduirButton);
             });
         }
     });
 }
 
-function reproduirPartitura(notes) {
-    let delay = 0;
-    notes.forEach(nota => {
-        setTimeout(() => {
-            const audio = document.getElementById(`audio-${nota}`);
-            if (audio) {
-                audio.currentTime = 0;
-                audio.play();
-            }
-        }, delay);
-        delay += 1000;
+document.querySelector('.cercar').addEventListener('click', cercador);
+
+document.querySelector('.cercar').addEventListener('click', () => {
+    const input = document.querySelector('.cercador').value.toUpperCase();
+    const resultContainer = document.getElementById('result-container');
+    resultContainer.innerHTML = '';
+
+    partitures.forEach(partitura => {
+        if (partitura.notes.join('').includes(input.replace(/\s+/g, ''))) {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+            resultItem.innerHTML = `
+                <p>${partitura.titol} <a class="lyric">Lletra</a></p>
+                <button class="button reproduir">Reproduir cançó</button>
+            `;
+            resultContainer.appendChild(resultItem);
+
+            const reproduirButton = resultItem.querySelector('.reproduir');
+            reproduirButton.addEventListener('click', () => {
+                reproduirPartitura(partitura.notes, reproduirButton);
+            });
+        }
     });
-}
+});
 
 document.querySelectorAll(".key").forEach(button => {
     button.addEventListener("click", () => {
