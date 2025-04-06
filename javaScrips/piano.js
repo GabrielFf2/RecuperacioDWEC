@@ -53,7 +53,26 @@ function cercador() {
                 <button class="button reproduir">Reproduir cançó</button>
             `;
             resultContainer.appendChild(resultItem);
+
+            const reproduirButton = resultItem.querySelector('.reproduir');
+            reproduirButton.addEventListener('click', () => {
+                reproduirPartitura(partitura.notes);
+            });
         }
+    });
+}
+
+function reproduirPartitura(notes) {
+    let delay = 0;
+    notes.forEach(nota => {
+        setTimeout(() => {
+            const audio = document.getElementById(`audio-${nota}`);
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        }, delay);
+        delay += 1000;
     });
 }
 
@@ -74,3 +93,14 @@ document.querySelector(".borrar").addEventListener("click", () => {
 });
 
 document.querySelector('.cercar').addEventListener('click', cercador);
+
+document.querySelectorAll('.key').forEach(key => {
+    key.addEventListener('click', () => {
+        const nota = key.getAttribute('data-note');
+        const audio = document.getElementById(`audio-${nota}`);
+        if (audio) {
+            audio.currentTime = 0;
+            audio.play();
+        }
+    });
+});
