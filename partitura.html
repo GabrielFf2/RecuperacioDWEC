@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/creacioPartitures.css">
+    <title>Partitura</title>
+</head>
+<body>
+<header>
+    <h1>Score Finder</h1>
+</header>
+<form id="creacioPartituraForm">
+    <label for="titol">Títol:</label>
+    <input type="text" name="titol" required>
+
+    <label for="idioma">Idioma original:</label>
+    <select name="idioma" required>
+        <option value="ca">Català</option>
+        <option value="es">Espanyol</option>
+        <option value="en">Anglès</option>
+    </select>
+
+    <label for="lletraOriginal">Lletra original:</label>
+    <textarea name="lletraOriginal" required></textarea>
+
+    <label for="traduccioCatala">Traducció al català:</label>
+    <textarea name="traduccioCatala" required></textarea>
+
+    <input type="submit" value="Desar Partitura">
+</form>
+
+<script src="./javaScrips/creacioPartitura.js"></script>
+</body>
+</html>

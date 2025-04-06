@@ -45,6 +45,7 @@ function reproduirPartitura(notes, button) {
 
     let tempsFaltant = duracio / 1000;
     button.textContent = `${tempsFaltant}s`;
+    button.disabled = true;
     const interval = setInterval(() => {
         tempsFaltant -= 0.1;
         button.textContent = `${tempsFaltant.toFixed(2)}s`;
@@ -64,6 +65,7 @@ function reproduirPartitura(notes, button) {
     setTimeout(() => {
         clearInterval(interval);
         button.textContent = 'Reproduir cançó';
+        button.disabled = false;
     }, duracio);
 }
 
