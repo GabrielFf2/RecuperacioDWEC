@@ -1,11 +1,14 @@
-import { Nota } from "./class/Nota.js";
+"use strict";
+
+import { Nota } from "../model/Nota.js";
 
 let cerca = [];
+
 const partitures = [
-    { id: 1, titol: "La Balanguera", idioma: "ca" , notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL"] },
-    { id: 2, titol: "Merry Christmas", idioma: "en"  , notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL"] },
-    { id: 3, titol: "Frère Jacques", idioma: "fr" , notes: ["DO", "DO", "RE", "DO", "FA", "MI", "DO", "DO", "RE", "DO", "SOL", "FA"] },
-    { id: 4, titol: "Sant Antoni i el Dimoni", idioma: "ca" ,  notes: ["DO", "DO", "RE", "DO", "FA", "MI", "DO", "DO", "RE", "DO", "SOL", "FA"] },
+    { id: 1, titol: "La Balanguera", idioma: "ca", notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL"] },
+    { id: 2, titol: "Merry Christmas", idioma: "en", notes: ["DO", "RE", "MI", "FA", "FA", "SOL", "SOL"] },
+    { id: 3, titol: "Frère Jacques", idioma: "fr", notes: ["DO", "DO", "RE", "DO", "FA", "MI", "DO", "DO", "RE", "DO", "SOL", "FA"] },
+    { id: 4, titol: "Sant Antoni i el Dimoni", idioma: "ca", notes: ["DO", "DO", "RE", "DO", "FA", "MI", "DO", "DO", "RE", "DO", "SOL", "FA"] },
     { id: 5, titol: "Ode to Joy", idioma: "de", notes: ["MI", "MI", "FA", "SOL", "SOL", "FA", "MI", "RE", "DO", "DO", "RE", "MI", "MI", "RE", "RE"] },
     { id: 6, titol: "Jingle Bells", idioma: "en", notes: ["MI", "MI", "MI", "MI", "MI", "MI", "MI", "SOL", "DO", "RE", "MI"] },
     { id: 7, titol: "El Cant dels Ocells", idioma: "ca", notes: ["DO", "RE", "MI", "FA", "SOL", "FA", "MI", "RE", "DO"] },
@@ -34,7 +37,6 @@ const partitures = [
     { id: 30, titol: "Danny Boy", idioma: "en", notes: ["RE", "MI", "FA", "SOL", "FA", "MI", "RE"] }
 ];
 
-
 function addCerca(nom, sostingut) {
     cerca.push(new Nota(nom, sostingut));
 }
@@ -42,10 +44,11 @@ function addCerca(nom, sostingut) {
 function reproduirPartitura(notes, button) {
     let delay = 0;
     const duracio = notes.length * 1000;
-
     let tempsFaltant = duracio / 1000;
+
     button.textContent = `${tempsFaltant}s`;
     button.disabled = true;
+
     const interval = setInterval(() => {
         tempsFaltant -= 0.1;
         button.textContent = `${tempsFaltant.toFixed(2)}s`;
@@ -64,18 +67,18 @@ function reproduirPartitura(notes, button) {
 
     setTimeout(() => {
         clearInterval(interval);
-        button.textContent = 'Reproduir cançó';
+        button.textContent = "Reproduir cançó";
         button.disabled = false;
     }, duracio);
 }
 
 function cercador() {
-    const input = document.querySelector('.cercador').value.toUpperCase();
+    const input = document.querySelector('.cercador').value.toUpperCase().replace(/\s+/g, '');
     const resultContainer = document.getElementById('result-container');
     resultContainer.innerHTML = '';
 
     partitures.forEach(partitura => {
-        if (partitura.notes.join('').includes(input.replace(/\s+/g, ''))) {
+        if (partitura.notes.join('').includes(input)) {
             const resultItem = document.createElement('div');
             resultItem.className = 'result-item';
             resultItem.innerHTML = `
@@ -94,54 +97,25 @@ function cercador() {
 
 document.querySelector('.cercar').addEventListener('click', cercador);
 
-document.querySelector('.cercar').addEventListener('click', () => {
-    const input = document.querySelector('.cercador').value.toUpperCase();
-    const resultContainer = document.getElementById('result-container');
-    resultContainer.innerHTML = '';
-
-    partitures.forEach(partitura => {
-        if (partitura.notes.join('').includes(input.replace(/\s+/g, ''))) {
-            const resultItem = document.createElement('div');
-            resultItem.className = 'result-item';
-            resultItem.innerHTML = `
-                <p>${partitura.titol} <a class="lyric">Lletra</a></p>
-                <button class="button reproduir">Reproduir cançó</button>
-            `;
-            resultContainer.appendChild(resultItem);
-
-            const reproduirButton = resultItem.querySelector('.reproduir');
-            reproduirButton.addEventListener('click', () => {
-                reproduirPartitura(partitura.notes, reproduirButton);
-            });
-        }
-    });
-});
-
-document.querySelectorAll(".key").forEach(button => {
-    button.addEventListener("click", () => {
-        let nota = button.classList[0].toUpperCase();
-        let sostingut = button.classList.contains("black");
-        addCerca(nota, sostingut);
-        console.log("Cerca actual:", cerca.map(n => n.nom));
-    });
-});
-
-document.querySelector(".borrar").addEventListener("click", () => {
-    cerca = [];
-    document.querySelector('.cercador').value = '';
-    document.getElementById('result-container').innerHTML = '';
-    console.log("Cerca esborrada");
-});
-
-document.querySelector('.cercar').addEventListener('click', cercador);
-
-document.querySelectorAll('.key').forEach(key => {
-    key.addEventListener('click', () => {
-        const nota = key.getAttribute('data-note');
+document.querySelectorAll('.key').forEach(button => {
+    button.addEventListener('click', () => {
+        const nota = button.getAttribute('data-note');
         const audio = document.getElementById(`audio-${nota}`);
         if (audio) {
             audio.currentTime = 0;
             audio.play();
         }
+
+        const nom = button.classList[0].toUpperCase();
+        const sostingut = button.classList.contains('black');
+        addCerca(nom, sostingut);
+        console.log("Cerca actual:", cerca.map(n => n.nom));
     });
+});
+
+document.querySelector('.borrar').addEventListener('click', () => {
+    cerca = [];
+    document.querySelector('.cercador').value = '';
+    document.getElementById('result-container').innerHTML = '';
+    console.log("Cerca esborrada");
 });
