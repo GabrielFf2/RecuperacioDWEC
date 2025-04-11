@@ -1,7 +1,7 @@
 'use strict';
 
 export class Nota {
-    constructor(id, nom, alteracio = false, ordre = 0) {
+    constructor(id = 0 , nom, alteracio = false, ordre = 0) {
         this.id = id;
         this.nom = nom;
         this.alteracio = alteracio;
