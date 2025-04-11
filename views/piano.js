@@ -1,7 +1,7 @@
 "use strict";
 
 import { partituraObjects } from "../services/initPartitures.js";
-import { pianoService } from "../services/pianoService.js";
+import { partituresService} from "../services/partituresService.js";
 
 const partitures = partituraObjects;
 
@@ -10,7 +10,7 @@ document.querySelector('.cercar').addEventListener('click', () => {
     const resultContainer = document.getElementById('result-container');
     resultContainer.innerHTML = '';
 
-    const results = pianoService.cercador(partitures, input);
+    const results = partituresService.cercador(partitures, input);
 
     results.forEach(partitura => {
         const resultItem = document.createElement('div');
@@ -23,7 +23,7 @@ document.querySelector('.cercar').addEventListener('click', () => {
 
         const reproduirButton = resultItem.querySelector('.reproduir');
         reproduirButton.addEventListener('click', () => {
-            pianoService.reproduirPartitura(partitura.notes, reproduirButton);
+            partituresService.reproduirPartitura(partitura.notes, reproduirButton);
         });
     });
 });
@@ -40,14 +40,14 @@ document.querySelectorAll('.key').forEach(button => {
         const nom = button.classList[0].toUpperCase();
         const sostingut = button.classList.contains('black');
 
-        pianoService.addCerca(nom, sostingut);
+        partituresService.addCerca(nom, sostingut);
 
-        console.log("Cerca actual:", pianoService.getCerca().map(n => n.nom));
+        console.log("Cerca actual:", partituresService.getCerca().map(n => n.nom));
     });
 });
 
 document.querySelector('.borrar').addEventListener('click', () => {
-    pianoService.resetCerca();
+    partituresService.resetCerca();
     document.querySelector('.cercador').value = '';
     document.getElementById('result-container').innerHTML = '';
     console.log("Cerca esborrada");
