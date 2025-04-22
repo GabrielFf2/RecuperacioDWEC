@@ -1,6 +1,6 @@
 'use strict';
 import { partituraObjects } from "../services/initPartitures.js";
-import { partituresService } from "../services/partituresService.js";
+import { partituraService } from "../services/PartituraService.js";
 
 (() => {
     const partitures = partituraObjects;
@@ -23,22 +23,22 @@ import { partituresService } from "../services/partituresService.js";
         `;
 
         const tbody = document.createElement("tbody");
-        const dades = partituresService.generarDades(partitures);
+        const dades = partituraService.generarDades(partitures);
 
         dades.forEach((partitura) => {
             const fila = document.createElement("tr");
 
             const tdTitol = document.createElement("td");
-            tdTitol.textContent = partitura.titol;
+            tdTitol.textContent = partitura.name;
             fila.appendChild(tdTitol);
 
             const tdIdioma = document.createElement("td");
-            tdIdioma.textContent = partitura.idiomaOriginal;
+            tdIdioma.textContent = partitura.idiomaoriginal;
             fila.appendChild(tdIdioma);
 
             const tdAccions = document.createElement("td");
-            const btnEditar = partituresService.crearBotonEditar();
-            const btnEsborrar = partituresService.crearBotonEsborrar(partitura.id);
+            const btnEditar = partituraService.crearBotonEditar();
+            const btnEsborrar = partituraService.crearBotonEsborrar(partitura.id);
 
             tdAccions.appendChild(btnEditar);
             tdAccions.appendChild(btnEsborrar);

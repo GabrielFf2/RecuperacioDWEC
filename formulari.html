@@ -10,15 +10,13 @@
 <header>
     <h1>Score Finder</h1>
 </header>
-<form id="creacioPartituraForm">
+<form id="creacioPartituraForm" data-idpartitura="">
     <label for="titol">Títol:</label>
     <input type="text" name="titol" required>
 
     <label for="idioma">Idioma original:</label>
-    <select name="idioma" required>
-        <option value="ca">Català</option>
-        <option value="es">Espanyol</option>
-        <option value="en">Anglès</option>
+    <select id="idioma" name="idioma" required>
+        <option value="" disabled selected>Selecciona un idioma</option>
     </select>
 
     <label for="lletraOriginal">Lletra original:</label>
@@ -30,6 +28,6 @@
     <input type="submit" value="Desar Partitura">
 </form>
 
-<script src="views/creacioPartitura.js"></script>
+<script type="module" src="views/formulari.js"></script>
 </body>
 </html>

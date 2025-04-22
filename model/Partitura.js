@@ -1,13 +1,13 @@
 'use strict';
 
 export class Partitura {
-    constructor(id, titol, idiomaOriginal, idiomaDesti, lletraOriginal = '', lletraDesti = '', notes = []) {
-        this.id = id;
-        this.titol = titol;
-        this.idiomaOriginal = idiomaOriginal;
-        this.idiomaDesti = idiomaDesti;
-        this.lletraOriginal = lletraOriginal;
-        this.lletraDesti = lletraDesti;
+    constructor(idpartitura, name, partituraoriginal, partituratraduccio, idiomaoriginal, idiomatraduccio = 'ca', notes = []) {
+        this.idpartitura = idpartitura;
+        this.name = name;
+        this.partituraoriginal = partituraoriginal;
+        this.partituratraduccio = partituratraduccio;
+        this.idiomaoriginal = idiomaoriginal;
+        this.idiomatraduccio = idiomatraduccio;
         this.notes = notes;
     }
 }

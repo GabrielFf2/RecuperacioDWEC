@@ -1,7 +1,7 @@
 "use strict";
 
 import { partituraObjects } from "../services/initPartitures.js";
-import { partituresService} from "../services/partituresService.js";
+import { partituraService} from "../services/PartituraService.js";
 (() => {
     const partitures = partituraObjects;
 
@@ -10,7 +10,7 @@ import { partituresService} from "../services/partituresService.js";
         const resultContainer = document.getElementById('result-container');
         resultContainer.innerHTML = '';
 
-        const results = partituresService.cercador(partitures, input);
+        const results = partituraService.cercador(partitures, input);
 
         results.forEach(partitura => {
             const resultItem = document.createElement('div');
@@ -23,7 +23,7 @@ import { partituresService} from "../services/partituresService.js";
 
             const reproduirButton = resultItem.querySelector('.reproduir');
             reproduirButton.addEventListener('click', () => {
-                partituresService.reproduirPartitura(partitura.notes, reproduirButton);
+                partituraService.reproduirPartitura(partitura.notes, reproduirButton);
             });
         });
     });
@@ -40,14 +40,14 @@ import { partituresService} from "../services/partituresService.js";
             const nom = button.classList[0].toUpperCase();
             const sostingut = button.classList.contains('black');
 
-            partituresService.addCerca(nom, sostingut);
+            partituraService.addCerca(nom, sostingut);
 
-            console.log("Cerca actual:", partituresService.getCerca().map(n => n.nom));
+            console.log("Cerca actual:", partituraService.getCerca().map(n => n.nom));
         });
     });
 
     document.querySelector('.borrar').addEventListener('click', () => {
-        partituresService.resetCerca();
+        partituraService.resetCerca();
         document.querySelector('.cercador').value = '';
         document.getElementById('result-container').innerHTML = '';
         console.log("Cerca esborrada");
