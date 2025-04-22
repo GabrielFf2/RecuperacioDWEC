@@ -2,53 +2,54 @@
 
 import { partituraObjects } from "../services/initPartitures.js";
 import { partituresService} from "../services/partituresService.js";
+(() => {
+    const partitures = partituraObjects;
 
-const partitures = partituraObjects;
+    document.querySelector('.cercar').addEventListener('click', () => {
+        const input = document.querySelector('.cercador').value;
+        const resultContainer = document.getElementById('result-container');
+        resultContainer.innerHTML = '';
 
-document.querySelector('.cercar').addEventListener('click', () => {
-    const input = document.querySelector('.cercador').value;
-    const resultContainer = document.getElementById('result-container');
-    resultContainer.innerHTML = '';
+        const results = partituresService.cercador(partitures, input);
 
-    const results = partituresService.cercador(partitures, input);
+        results.forEach(partitura => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+            resultItem.innerHTML = `
+                <p>${partitura.titol} <a class="lyric">Lletra</a></p>
+                <button class="button reproduir">Reproduir cançó</button>
+            `;
+            resultContainer.appendChild(resultItem);
 
-    results.forEach(partitura => {
-        const resultItem = document.createElement('div');
-        resultItem.className = 'result-item';
-        resultItem.innerHTML = `
-            <p>${partitura.titol} <a class="lyric">Lletra</a></p>
-            <button class="button reproduir">Reproduir cançó</button>
-        `;
-        resultContainer.appendChild(resultItem);
-
-        const reproduirButton = resultItem.querySelector('.reproduir');
-        reproduirButton.addEventListener('click', () => {
-            partituresService.reproduirPartitura(partitura.notes, reproduirButton);
+            const reproduirButton = resultItem.querySelector('.reproduir');
+            reproduirButton.addEventListener('click', () => {
+                partituresService.reproduirPartitura(partitura.notes, reproduirButton);
+            });
         });
     });
-});
 
-document.querySelectorAll('.key').forEach(button => {
-    button.addEventListener('click', () => {
-        const nota = button.getAttribute('data-note');
-        const audio = document.getElementById(`audio-${nota}`);
-        if (audio) {
-            audio.currentTime = 0;
-            audio.play();
-        }
+    document.querySelectorAll('.key').forEach(button => {
+        button.addEventListener('click', () => {
+            const nota = button.getAttribute('data-note');
+            const audio = document.getElementById(`audio-${nota}`);
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play();
+            }
 
-        const nom = button.classList[0].toUpperCase();
-        const sostingut = button.classList.contains('black');
+            const nom = button.classList[0].toUpperCase();
+            const sostingut = button.classList.contains('black');
 
-        partituresService.addCerca(nom, sostingut);
+            partituresService.addCerca(nom, sostingut);
 
-        console.log("Cerca actual:", partituresService.getCerca().map(n => n.nom));
+            console.log("Cerca actual:", partituresService.getCerca().map(n => n.nom));
+        });
     });
-});
 
-document.querySelector('.borrar').addEventListener('click', () => {
-    partituresService.resetCerca();
-    document.querySelector('.cercador').value = '';
-    document.getElementById('result-container').innerHTML = '';
-    console.log("Cerca esborrada");
-});
+    document.querySelector('.borrar').addEventListener('click', () => {
+        partituresService.resetCerca();
+        document.querySelector('.cercador').value = '';
+        document.getElementById('result-container').innerHTML = '';
+        console.log("Cerca esborrada");
+    });
+})();
