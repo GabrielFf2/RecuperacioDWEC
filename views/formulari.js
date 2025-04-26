@@ -2,16 +2,42 @@
 
 import {GoogleService} from "../services/GoogleService.js";
 import {Partitura} from "../model/Partitura.js";
-import {partituraService as PartituraService} from "../services/PartituraService.js";
+import {partituraService } from "../services/PartituraService.js";
 
-(() => {
-    document.addEventListener('DOMContentLoaded', () => {
+(async () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const partituraId = urlParams.get("id");
+
+        let partitura = {};
+
+        if (partituraId) {
+            partitura = await partituraService.carregarPartitura(partituraId);
+            if (partitura) {
+                const form = document.getElementById('creacioPartituraForm');
+                form.elements['titol'].value = partitura.titol || "";
+                form.elements['lletraOriginal'].value = partitura.lletraoriginal || "";
+                form.elements['traduccioCatala'].value = partitura.lletratraduccio || "";
+                form.elements['idioma'].value = partitura.idiomaoriginal || "";
+
+                const notesList = document.getElementById('notesList');
+                notesList.innerHTML = "";
+                const sortedNotes = partitura.notes.sort((a, b) => a.ordre - b.ordre);
+                sortedNotes.forEach(note => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${note.nom}`;
+                    notesList.appendChild(listItem);
+                });
+            }
+        }
+
         const form = document.getElementById('creacioPartituraForm');
         form.addEventListener('submit', async (event) => {
             if (!validateForm()) {
                 event.preventDefault();
             }
-            const idpartitura = form.dataset.idpartitura || "";
+            const idpartitura = partituraId || form.dataset.idpartitura || "";
             const name = form.elements['titol'].value;
             const partituraoriginal = form.elements['lletraOriginal'].value;
             const partituratraduccio = form.elements['traduccioCatala'].value;
@@ -20,7 +46,7 @@ import {partituraService as PartituraService} from "../services/PartituraService
             const partitura = new Partitura(idpartitura, name, partituraoriginal, partituratraduccio, idiomaoriginal);
 
             try {
-                const message = await PartituraService.savePartitura(partitura);
+                const message = await partituraService.savePartitura(partitura);
                 alert(message);
                 form.reset();
             } catch (error) {

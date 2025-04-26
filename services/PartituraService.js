@@ -1,13 +1,13 @@
 'use strict';
 
-import { Nota } from "../model/Nota.js";
+import {Nota} from "../model/Nota.js";
 
 let cerca = [];
 
 export const partituraService = {
 
     async getPartitures() {
-        const url = "http://localhost:8080/piano/nologin/score/list";
+        const url = "https://theteacher.codiblau.com/piano/nologin/score/list";
         try {
             const response = await fetch(url, {
                 method: "POST",
@@ -20,8 +20,7 @@ export const partituraService = {
                 throw new Error(`Error: ${response.status} ${response.statusText}`);
             }
 
-            const partitures = await response.json();
-            return partitures;
+            return await response.json();
         } catch (error) {
             console.error("Error obtenint les partitures del servidor:", error);
             return [];
@@ -29,7 +28,7 @@ export const partituraService = {
     },
 
     async savePartitura(partitura) {
-        const url = "http://localhost:8080/piano/nologin/score/save";
+        const url = "https://theteacher.codiblau.com/piano/nologin/score/save";
         try {
             const response = await fetch(url, {
                 method: "POST",
@@ -52,7 +51,7 @@ export const partituraService = {
     },
 
     async deletePartitura(id) {
-        const url = "http://localhost:8080/piano/nologin/score/delete";
+        const url = "https://theteacher.codiblau.com/piano/nologin/score/delete";
         try {
             const response = await fetch(url, {
                 method: "POST",
@@ -70,6 +69,18 @@ export const partituraService = {
             return result.message;
         } catch (error) {
             console.error("Error esborrant la partitura al servidor:", error);
+            throw error;
+        }
+    },
+
+    async carregarPartitura(id) {
+        try {
+            const partitures = await this.getPartitures();
+
+            const part = partitures.find(p => p.idpartitura === Number(id));
+            return part;
+        } catch (error) {
+            console.error("Error carregant la partitura:", error);
             throw error;
         }
     },
@@ -133,15 +144,18 @@ export const partituraService = {
     },
 
 
+    crearBotonEditar(partituraId) {
+        if (!partituraId) {
+            console.error("El ID de la partitura no es válido:", partituraId);
+            return null;
+        }
 
-    generarDades(partitures) {
-        return Array.from({ length: 100 }, (_, i) => partitures[i % partitures.length]);
-    },
-
-    crearBotonEditar() {
         const btn = document.createElement("button");
         btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Editar';
         btn.classList.add("btn", "edit-btn");
+        btn.addEventListener("click", () => {
+            window.location.href = `formulari.html?id=${encodeURIComponent(partituraId)}`;
+        });
         return btn;
     },
 

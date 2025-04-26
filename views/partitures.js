@@ -1,12 +1,25 @@
 'use strict';
-import { partituraObjects } from "../services/initPartitures.js";
+
 import { partituraService } from "../services/PartituraService.js";
 
-(() => {
-    const partitures = partituraObjects;
+document.addEventListener("DOMContentLoaded", async () => {
+    const partitures = await partituraService.getPartitures();
+
+    if (!partitures || partitures.length === 0) {
+        console.error("No se encontraron partituras.");
+        return;
+    }
+
+    console.log("Partitures cargadas:", partitures);
 
     function crearTaula() {
         const container = document.getElementById("table-container");
+
+        if (!container) {
+            console.error("El contenedor con ID 'table-container' no existe.");
+            return;
+        }
+
         container.innerHTML = "";
 
         const taula = document.createElement("table");
@@ -17,28 +30,34 @@ import { partituraService } from "../services/PartituraService.js";
                 <tr>
                     <th>Títol</th>
                     <th>Idioma Original</th>
+                    <th>Notes</th>
                     <th>Accions</th>
                 </tr>
             </thead>
         `;
 
         const tbody = document.createElement("tbody");
-        const dades = partituraService.generarDades(partitures);
 
-        dades.forEach((partitura) => {
+        partitures.forEach((partitura) => {
             const fila = document.createElement("tr");
 
             const tdTitol = document.createElement("td");
-            tdTitol.textContent = partitura.name;
+            tdTitol.textContent = partitura.titol || "Sin título";
             fila.appendChild(tdTitol);
 
             const tdIdioma = document.createElement("td");
-            tdIdioma.textContent = partitura.idiomaoriginal;
+            tdIdioma.textContent = partitura.idiomaoriginal || "Desconocido";
             fila.appendChild(tdIdioma);
 
+            const tdNotes = document.createElement("td");
+            tdNotes.textContent = partitura.notes.length > 0
+                ? `${partitura.notes.length} notes`
+                : "Sin notas";
+            fila.appendChild(tdNotes);
+
             const tdAccions = document.createElement("td");
-            const btnEditar = partituraService.crearBotonEditar();
-            const btnEsborrar = partituraService.crearBotonEsborrar(partitura.id);
+            const btnEditar = partituraService.crearBotonEditar(partitura.idpartitura);
+            const btnEsborrar = partituraService.crearBotonEsborrar(partitura.idpartitura);
 
             tdAccions.appendChild(btnEditar);
             tdAccions.appendChild(btnEsborrar);
@@ -51,10 +70,10 @@ import { partituraService } from "../services/PartituraService.js";
         container.appendChild(taula);
     }
 
-    window.onload = crearTaula;
+    crearTaula();
 
-    document.getElementById("login-link").addEventListener("click", function(event) {
+    document.getElementById("login-link")?.addEventListener("click", function(event) {
         event.preventDefault();
         window.open('./login.html', 'Login', 'width=500,height=400,top=' + (screen.height / 2 - 200) + ',left=' + (screen.width / 2 - 250));
     });
-})();
+});
