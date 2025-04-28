@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/creacioPartitures.css">
     <title>Partitura</title>
+    <link rel="stylesheet" href="./css/creacioPartitures.css">
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
 <header>
     <h1>Score Finder</h1>
 </header>
+
 <form id="creacioPartituraForm" data-idpartitura="">
     <label for="titol">Títol:</label>
-    <input type="text" name="titol" required>
+    <input type="text" id="titol" name="titol" required>
 
     <label for="idioma">Idioma original:</label>
     <select id="idioma" name="idioma" required>
@@ -20,10 +23,10 @@
     </select>
 
     <label for="lletraOriginal">Lletra original:</label>
-    <textarea name="lletraOriginal" required></textarea>
+    <textarea id="lletraOriginal" name="lletraOriginal" required></textarea>
 
     <label for="traduccioCatala">Traducció al català:</label>
-    <textarea name="traduccioCatala" required></textarea>
+    <textarea id="traduccioCatala" name="traduccioCatala" required></textarea>
 
     <div id="notesContainer">
         <h3>Notes:</h3>
@@ -32,6 +35,16 @@
 
     <input type="submit" value="Desar Partitura">
 </form>
+
+
+<script>
+    tinymce.init({
+        selector: '#lletraOriginal, #traduccioCatala',
+        language: 'ca',
+        plugins: 'lists link image table code',
+        toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code'
+    });
+</script>
 
 <script type="module" src="views/formulari.js"></script>
 </body>

@@ -20,7 +20,12 @@ export const partituraService = {
                 throw new Error(`Error: ${response.status} ${response.statusText}`);
             }
 
-            return await response.json();
+            const data = await response.json();
+            data.forEach(partitura => {
+                partitura.notes.sort((a, b) => a.ordre - b.ordre);
+            });
+
+            return data;
         } catch (error) {
             console.error("Error obtenint les partitures del servidor:", error);
             return [];

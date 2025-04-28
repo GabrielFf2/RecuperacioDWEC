@@ -1,55 +1,30 @@
 "use strict";
 
-import { partituraObjects } from "../services/initPartitures.js";
-import { partituraService} from "../services/PartituraService.js";
+import { tecles } from "../services/TeclesPiano.js";
+import { cercador } from "../services/Cercador.js";
+import { partituraService } from "../services/PartituraService.js";
+
 (() => {
-    const partitures = partituraObjects;
+    let cercaActual = [];
 
-    document.querySelector('.cercar').addEventListener('click', () => {
-        const input = document.querySelector('.cercador').value;
-        const resultContainer = document.getElementById('result-container');
-        resultContainer.innerHTML = '';
+    const updateCercadorInput = (cercaActual) => {
+        const cercadorInput = document.querySelector(".cercador");
+        cercadorInput.value = cercaActual.map((nota) => nota.nom).join(" ");
+    };
 
-        const results = partituraService.cercador(partitures, input);
+    const loadPartitures = async () => {
+        const partitures = await partituraService.getPartitures();
+        console.log("Partitures carregades:", partitures);
 
-        results.forEach(partitura => {
-            const resultItem = document.createElement('div');
-            resultItem.className = 'result-item';
-            resultItem.innerHTML = `
-                <p>${partitura.titol} <a class="lyric">Lletra</a></p>
-                <button class="button reproduir">Reproduir cançó</button>
-            `;
-            resultContainer.appendChild(resultItem);
+        if (!Array.isArray(partitures)) {
+            console.error("Error: `partitures` no és un array.");
+            return [];
+        }
+        return partitures;
+    };
 
-            const reproduirButton = resultItem.querySelector('.reproduir');
-            reproduirButton.addEventListener('click', () => {
-                partituraService.reproduirPartitura(partitura.notes, reproduirButton);
-            });
-        });
-    });
-
-    document.querySelectorAll('.key').forEach(button => {
-        button.addEventListener('click', () => {
-            const nota = button.getAttribute('data-note');
-            const audio = document.getElementById(`audio-${nota}`);
-            if (audio) {
-                audio.currentTime = 0;
-                audio.play();
-            }
-
-            const nom = button.classList[0].toUpperCase();
-            const sostingut = button.classList.contains('black');
-
-            partituraService.addCerca(nom, sostingut);
-
-            console.log("Cerca actual:", partituraService.getCerca().map(n => n.nom));
-        });
-    });
-
-    document.querySelector('.borrar').addEventListener('click', () => {
-        partituraService.resetCerca();
-        document.querySelector('.cercador').value = '';
-        document.getElementById('result-container').innerHTML = '';
-        console.log("Cerca esborrada");
+    loadPartitures().then((partitures) => {
+        tecles(cercaActual, updateCercadorInput);
+        cercador(cercaActual, partitures, updateCercadorInput);
     });
 })();
