@@ -1,11 +1,15 @@
 'use strict';
 
-import {GoogleService} from "../services/GoogleService.js";
-import {Partitura} from "../model/Partitura.js";
-import {partituraService } from "../services/PartituraService.js";
+import { GoogleService } from "../services/GoogleService.js";
+import { Partitura } from "../model/Partitura.js";
+import { partituraService } from "../services/PartituraService.js";
+import { TraduccionService } from "../services/TraduccionService.js";
+
 
 (async () => {
     document.addEventListener('DOMContentLoaded', async () => {
+
+        await carregarIdiomes();
 
         const urlParams = new URLSearchParams(window.location.search);
         const partituraId = urlParams.get("id");
@@ -17,18 +21,29 @@ import {partituraService } from "../services/PartituraService.js";
             if (partitura) {
                 const form = document.getElementById('creacioPartituraForm');
                 form.elements['titol'].value = partitura.titol || "";
-                form.elements['lletraOriginal'].value = partitura.lletraoriginal || "";
-                form.elements['traduccioCatala'].value = partitura.lletratraduccio || "";
+
+                const editorOriginal = tinymce.get('lletraOriginal');
+                if (editorOriginal) {
+                    editorOriginal.setContent(partitura.lletraoriginal || "");
+                }
+
+                const editorTraduccio = tinymce.get('traduccioCatala');
+                if (editorTraduccio) {
+                    editorTraduccio.setContent(partitura.lletratraduccio || "");
+                }
+
                 form.elements['idioma'].value = partitura.idiomaoriginal || "";
 
                 const notesList = document.getElementById('notesList');
                 notesList.innerHTML = "";
-                const sortedNotes = partitura.notes.sort((a, b) => a.ordre - b.ordre);
-                sortedNotes.forEach(note => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${note.nom}`;
-                    notesList.appendChild(listItem);
-                });
+                if (Array.isArray(partitura.notes) && partitura.notes.length > 0) {
+                    const sortedNotes = partitura.notes.sort((a, b) => a.ordre - b.ordre);
+                    sortedNotes.forEach(note => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${note.nom}`;
+                        notesList.appendChild(listItem);
+                    });
+                }
             }
         }
 
@@ -72,7 +87,39 @@ import {partituraService } from "../services/PartituraService.js";
         }
     }
 
-    window.onload = carregarIdiomes;
+    const botoTraduir = document.getElementById('btnTraduccio');
+    const idiomaSelect = document.getElementById('idioma');
+
+    botoTraduir.addEventListener('click', async () => {
+        const idiomaOriginal = idiomaSelect.value;
+
+        const editor = tinymce.get('lletraOriginal');
+        if (!editor) {
+            console.error('No se encontró el TinyMCE con id "lletraOriginal"');
+            return;
+        }
+
+        const textOriginal = editor.getContent({ format: 'text' });
+
+        if (!textOriginal.trim()) {
+            alert('El campo "Texto original" está vacío. Por favor, escribe algo antes de traducir.');
+            return;
+        }
+
+        try {
+            const traduccion = await TraduccionService.traduir(idiomaOriginal, textOriginal);
+            console.log('Traducción recibida:', traduccion);
+            const editorTraduccio = tinymce.get('traduccioCatala');
+            if (editorTraduccio) {
+                editorTraduccio.setContent(traduccion);
+            }
+        } catch (error) {
+            console.error('Error en la petición de traducción:', error);
+            alert('Hubo un error al realizar la traducción. Revisa la consola para más detalles.');
+        }
+    });
+
+
 
     const validateForm = () => {
         const { titol, idioma, lletraOriginal, traduccioCatala } = document.forms[0].elements;
