@@ -68,56 +68,57 @@ import { TraduccionService } from "../services/TraduccionService.js";
                 alert("Error enviant la partitura. Revisa la consola per més detalls.");
             }
         });
-    });
 
-    async function carregarIdiomes() {
-        const selectIdioma = document.getElementById("idioma");
-        selectIdioma.innerHTML = "";
+        async function carregarIdiomes() {
+            const selectIdioma = document.getElementById("idioma");
+            selectIdioma.innerHTML = "";
 
-        try {
-            const idiomes = await GoogleService.getIdiomes();
-            idiomes.forEach(idioma => {
-                const option = document.createElement("option");
-                option.value = idioma.codi;
-                option.textContent = idioma.nom;
-                selectIdioma.appendChild(option);
-            });
-        } catch (error) {
-            console.error("Error carregant els idiomes:", error);
-        }
-    }
-
-    const botoTraduir = document.getElementById('btnTraduccio');
-    const idiomaSelect = document.getElementById('idioma');
-
-    botoTraduir.addEventListener('click', async () => {
-        const idiomaOriginal = idiomaSelect.value;
-
-        const editor = tinymce.get('lletraOriginal');
-        if (!editor) {
-            console.error('No se encontró el TinyMCE con id "lletraOriginal"');
-            return;
-        }
-
-        const textOriginal = editor.getContent({ format: 'text' });
-
-        if (!textOriginal.trim()) {
-            alert('El campo "Texto original" está vacío. Por favor, escribe algo antes de traducir.');
-            return;
-        }
-
-        try {
-            const traduccion = await TraduccionService.traduir(idiomaOriginal, textOriginal);
-            console.log('Traducción recibida:', traduccion);
-            const editorTraduccio = tinymce.get('traduccioCatala');
-            if (editorTraduccio) {
-                editorTraduccio.setContent(traduccion);
+            try {
+                const idiomes = await GoogleService.getIdiomes();
+                idiomes.forEach(idioma => {
+                    const option = document.createElement("option");
+                    option.value = idioma.codi;
+                    option.textContent = idioma.nom;
+                    selectIdioma.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error carregant els idiomes:", error);
             }
-        } catch (error) {
-            console.error('Error en la petición de traducción:', error);
-            alert('Hubo un error al realizar la traducción. Revisa la consola para más detalles.');
+        }
+
+        const editorOriginal = tinymce.get('lletraOriginal');
+        const idiomaSelect = document.getElementById('idioma');
+
+        if (editorOriginal) {
+            editorOriginal.on('input', async () => {
+                console.log(editorOriginal.value)
+                const idiomaOriginal = idiomaSelect.value;
+
+                const textOriginal = editorOriginal.getContent({ format: 'text' });
+
+                if (!textOriginal.trim()) {
+                    alert('El campo "Texto original" está vacío. Por favor, escribe algo antes de traducir.');
+                    return;
+                }
+
+                try {
+                    const traduccion = await TraduccionService.traduir(idiomaOriginal, textOriginal);
+                    console.log('Traducción recibida:', traduccion);
+                    const editorTraduccio = tinymce.get('traduccioCatala');
+                    if (editorTraduccio) {
+                        editorTraduccio.setContent(traduccion);
+                    }
+                } catch (error) {
+                    console.error('Error en la petición de traducción:', error);
+                    alert('Hubo un error al realizar la traducción. Revisa la consola para más detalles.');
+                }
+            });
+        } else {
+            console.error('No se encontró el TinyMCE con id "lletraOriginal"');
         }
     });
+
+
 
 
 
