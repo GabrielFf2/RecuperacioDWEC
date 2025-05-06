@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registre - Score Finder</title>
+    <link rel="stylesheet" href="css/registre.css">
+</head>
+<body>
+<h1>Registre d'Usuari</h1>
+<form id="registreForm" novalidate>
+    <div>
+        <label for="nom">Nom i Cognoms:</label>
+        <input type="text" id="nom" name="nom" placeholder="Nom i Cognoms">
+        <span class="error" aria-live="polite"></span>
+    </div>
+    <div>
+        <label for="email">Correu Electrònic:</label>
+        <input type="email" id="email" name="email" placeholder="exemple@correu.com">
+        <span class="error" aria-live="polite"></span>
+    </div>
+    <div>
+        <label for="password">Contrasenya:</label>
+        <input type="password" id="password" name="password" placeholder="Contrasenya">
+        <span class="error" aria-live="polite"></span>
+    </div>
+    <div>
+        <label for="confirmPassword">Validació de Contrasenya:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeteix la Contrasenya">
+        <span class="error" aria-live="polite"></span>
+    </div>
+    <button type="submit">Registrar-se</button>
+</form>
+<script src="views/registre.js"></script>
+</body>
+</html>
