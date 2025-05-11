@@ -58,9 +58,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             const tdAccions = document.createElement("td");
             const btnEditar = partituraService.crearBotonEditar(partitura.idpartitura);
             const btnEsborrar = partituraService.crearBotonEsborrar(partitura.idpartitura);
+            const btnVeure = partituraService.crearBotonVerLetra(partitura);
+            if (btnVeure) {
+                tdAccions.appendChild(btnVeure);
+            } else {
+                console.error("No se pudo crear el botón Ver Letra para la partitura:", partitura);
+            }
 
             tdAccions.appendChild(btnEditar);
             tdAccions.appendChild(btnEsborrar);
+            tdAccions.appendChild(btnVeure);
 
             fila.appendChild(tdAccions);
             tbody.appendChild(fila);

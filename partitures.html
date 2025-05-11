@@ -18,10 +18,24 @@
 </header>
 
 <h2>Nova Partitura</h2>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <h2 id="modal-title"></h2>
+        <div id="lyrics-container">
+            <p id="original-lyrics"></p>
+            <button id="copy-original">Copiar lletra original</button>
+            <p id="translated-lyrics"></p>
+            <button id="copy-translated">Copiar lletra en català</button>
+        </div>
+    </div>
+</div>
 <div id="table-container"></div>
 
 
 <script type="module" src="views/partitures.js"></script>
+<script type="module" src="services/Partitures.js"></script>
+
 
 </body>
 </html>

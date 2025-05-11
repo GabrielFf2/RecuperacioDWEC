@@ -181,5 +181,29 @@ export const partituraService = {
             }
         });
         return btn;
+    },
+
+    crearBotonVerLetra(partitura) {
+        if (!partitura || !partitura.lletraoriginal) {
+            console.error("La partitura no es válida o no tiene letra:", partitura);
+            return null;
+        }
+
+        const btn = document.createElement("button");
+        btn.textContent = "Ver letra";
+        btn.classList.add("btn", "view-btn");
+        btn.addEventListener("click", () => {
+            const modal = document.getElementById("modal");
+            const modalTitle = document.getElementById("modal-title");
+            const originalLyrics = document.getElementById("original-lyrics");
+            const translatedLyrics = document.getElementById("translated-lyrics");
+
+            modalTitle.textContent = partitura.titol || "Sin título";
+            originalLyrics.textContent = partitura.lletraoriginal || "Letra no disponible";
+            translatedLyrics.textContent = partitura.lletratraduccio || "Traducción no disponible";
+
+            modal.style.display = "block";
+        });
+        return btn;
     }
 };
