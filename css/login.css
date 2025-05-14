@@ -7,7 +7,7 @@ body {
     margin: 0;
     background: url('../imgs/fusta.jpg') no-repeat center center/cover;
 }
-#loginForm {
+.login-form {
     width: 100%;
     max-width: 300px;
     padding: 20px;
@@ -15,19 +15,19 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-#loginForm h1 {
+.login-form h2 {
     margin-bottom: 20px;
     font-family: 'Brush Script MT', cursive;
     font-size: 28px;
 }
-#loginForm input {
+.login-form input {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-#loginForm button {
+.login-form button {
     width: 100%;
     padding: 10px;
     background-color: #d0021b;
@@ -37,6 +37,6 @@ body {
     cursor: pointer;
     font-size: 16px;
 }
-#loginForm button:hover {
+.login-form button:hover {
     background-color: #a00116;
 }
