@@ -1,9 +1,9 @@
 'use strict';
 
-import { partituraService } from "../services/PartituraService.js";
+import { PartituraService } from "../services/PartituraService.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const partitures = await partituraService.getPartitures();
+    const partitures = await PartituraService.getPartitures();
 
     if (!partitures || partitures.length === 0) {
         console.error("No se encontraron partituras.");
@@ -62,9 +62,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             fila.appendChild(tdNotes);
 
             const tdAccions = document.createElement("td");
-            const btnEditar = partituraService.crearBotonEditar(partitura.idpartitura);
-            const btnEsborrar = partituraService.crearBotonEsborrar(partitura.idpartitura);
-            const btnVeure = partituraService.crearBotonVerLetra(partitura);
+            const btnEditar = PartituraService.crearBotonEditar(partitura.idpartitura);
+            const btnEsborrar = PartituraService.crearBotonEsborrar(partitura.idpartitura);
+            const btnVeure = PartituraService.crearBotonVerLetra(partitura);
             if (btnVeure) {
                 tdAccions.appendChild(btnVeure);
             } else {

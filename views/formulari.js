@@ -1,285 +1,326 @@
-'use strict';
-
 import { GoogleService } from "../services/GoogleService.js";
+import { PartituraService } from "../services/PartituraService.js";
 import { Partitura } from "../model/Partitura.js";
-import { partituraService } from "../services/PartituraService.js";
+import { Nota } from "../model/Nota.js";
 import { TraduccionService } from "../services/TraduccionService.js";
-import { TinyMCEService } from '../services/TinyMCEService.js';
+import {TinyMCEService} from "../services/TinyMCEService.js";
 
 
-(async () => {
-    document.addEventListener('DOMContentLoaded', async () => {
+function inicialitzarTraduccioAutomatica() {
+    const editorLletraOriginal = tinymce.get('lletraOriginal');
+    const editorTraduccioCatala = tinymce.get('traduccioCatala');
+    const idioma = document.getElementById('idioma-select');
 
 
-        TinyMCEService.init('#lletraOriginal, #traduccioCatala');
-
-        const content = TinyMCEService.getEditorContent('lletraOriginal');
-        console.log('Contenido del editor:', content);
-
-        TinyMCEService.setEditorContent('traduccioCatala', '<p>Texto de ejemplo</p>');
-        await carregarIdiomes();
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const partituraId = urlParams.get("id");
-
-        let partitura = {};
-
-        if (partituraId) {
-            partitura = await partituraService.carregarPartitura(partituraId);
-            if (partitura) {
-                const form = document.getElementById('creacioPartituraForm');
-                form.elements['titol'].value = partitura.titol || "";
-
-                const editorOriginal = tinymce.get('lletraOriginal');
-                if (editorOriginal) {
-                    editorOriginal.setContent(partitura.lletraoriginal || "");
-                }
-
-                const editorTraduccio = tinymce.get('traduccioCatala');
-                if (editorTraduccio) {
-                    editorTraduccio.setContent(partitura.lletratraduccio || "");
-                }
-
-                form.elements['idioma'].value = partitura.idiomaoriginal || "";
-
-                const notesList = document.getElementById('notesList');
-                notesList.innerHTML = "";
-                if (Array.isArray(partitura.notes) && partitura.notes.length > 0) {
-                    const sortedNotes = partitura.notes.sort((a, b) => a.ordre - b.ordre);
-                    sortedNotes.forEach(note => {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = `${note.nom}`;
-                        notesList.appendChild(listItem);
-                    });
-                }
-            }
-        }
-
-        const form = document.getElementById('creacioPartituraForm');
-        form.addEventListener('submit', async (event) => {
-            if (!validateForm()) {
-                event.preventDefault();
-            }
-            const idpartitura = partituraId || form.dataset.idpartitura || "";
-            const name = form.elements['titol'].value;
-            const partituraoriginal = form.elements['lletraOriginal'].value;
-            const partituratraduccio = form.elements['traduccioCatala'].value;
-            const idiomaoriginal = form.elements['idioma'].value;
-            const notes = Array.from(document.querySelectorAll('.nota-en-pentagrama')).map((nota, index) => ({
-                note: nota.textContent,
-                type: nota.dataset.type || 'regular',
-                ordre: index + 1
-            }));
-
-            const partitura = new Partitura(
-                idpartitura,
-                name,
-                partituraoriginal,
-                partituratraduccio,
-                idiomaoriginal,
-                notes
-            );
+    if (editorLletraOriginal && idioma) {
+        editorLletraOriginal.on('change keyup', async () => {
+            const textOriginal = editorLletraOriginal.getContent();
 
             try {
-                const message = await partituraService.savePartitura(partitura);
-                alert(message);
-                form.reset();
+                const textTraduccio = await TraduccionService.traduir(idioma.value, textOriginal);
+                if (editorTraduccioCatala) {
+                    editorTraduccioCatala.setContent(textTraduccio);
+                }
             } catch (error) {
-                alert("Error enviant la partitura. Revisa la consola per més detalls.");
+                console.error('Error al traducir:', error);
             }
         });
+    } else {
+        console.error('Editor o selector de idioma no encontrado.');
+    }
+}
+function validarLletraTraduccio() {
+    const idioma = document.forms['form']['idioma'].value;
+    const lletraOriginal = tinymce.get('lletraOriginal').getContent();
+    const lletraTraduccio = tinymce.get('traduccioCatala').getContent();
 
-        async function carregarIdiomes() {
-            const selectIdioma = document.getElementById("idioma");
-            selectIdioma.innerHTML = "";
+    if (idioma === 'ca' && lletraOriginal !== lletraTraduccio) {
+        alert("La lletra original i la traducció al català han de ser idèntiques.");
+        return false;
+    }
+    if (!lletraOriginal.trim()) {
+        alert("La lletra original no pot estar buida.");
+        return false;
+    }
 
-            try {
-                const idiomes = await GoogleService.getIdiomes();
-                idiomes.forEach(idioma => {
-                    const option = document.createElement("option");
-                    option.value = idioma.codi;
-                    option.textContent = idioma.nom;
-                    selectIdioma.appendChild(option);
-                });
-            } catch (error) {
-                console.error("Error carregant els idiomes:", error);
-            }
+    if (!lletraTraduccio.trim()) {
+        alert("La traducció no pot estar buida.");
+        return false;
+    }
+    return true;
+}
+
+function inicialitzarValidacio() {
+    document.forms['form'].addEventListener('submit', function (event) {
+        if (!validarLletraTraduccio()) {
+            event.preventDefault();
         }
+    });
+}
 
-        const editorOriginal = tinymce.get('lletraOriginal');
-        const idiomaSelect = document.getElementById('idioma');
+function pintarIdiomesSelect(idiomes) {
+    const select = document.getElementById('idioma-select');
 
-        if (editorOriginal) {
-            editorOriginal.on('input', async () => {
-                console.log(editorOriginal.value)
-                const idiomaOriginal = idiomaSelect.value;
+    select.innerHTML = '';
 
-                const textOriginal = editorOriginal.getContent({ format: 'text' });
+    idiomes.forEach(idioma => {
+        const option = document.createElement('option');
+        option.value = idioma.codi;
+        option.textContent = idioma.nom;
+        select.appendChild(option);
+    });
+}
 
-                if (!textOriginal.trim()) {
-                    alert('El campo "Texto original" está vacío. Por favor, escribe algo antes de traducir.');
-                    return;
-                }
+async function omplirFormulariPartitura(partitura) {
+    document.getElementById('partitura-id').value = partitura.idpartitura || '';
+    document.querySelector('input[name="titol"]').value = partitura.titol || '';
+    document.querySelector('select[name="idioma"]').value = partitura.idiomaoriginal || '';
 
-                try {
-                    const traduccion = await TraduccionService.traduir(idiomaOriginal, textOriginal);
-                    console.log('Traducción recibida:', traduccion);
-                    const editorTraduccio = tinymce.get('traduccioCatala');
-                    if (editorTraduccio) {
-                        editorTraduccio.setContent(traduccion);
-                    }
-                } catch (error) {
-                    console.error('Error en la petición de traducción:', error);
-                    alert('Hubo un error al realizar la traducción. Revisa la consola para más detalles.');
-                }
+    const editorLletraOriginal = tinymce.get('lletraOriginal');
+    const editorTraduccioCatala = tinymce.get('traduccioCatala');
+
+    if (editorLletraOriginal) {
+        editorLletraOriginal.setContent(partitura.lletraoriginal || '');
+    }
+    if (editorTraduccioCatala) {
+        editorTraduccioCatala.setContent(partitura.lletratraduccio || '');
+    }
+
+    carregarNotesAlPentagrama(partitura.notes || []);
+}
+
+async function guardarPartitura(event) {
+    event.preventDefault();
+    if (!validarLletraTraduccio()) return;
+
+    const form = document.forms["form"];
+    const partituraId = document.getElementById('partitura-id').value || null;
+    const titol = form.titol.value;
+    const idioma = form.idioma.value;
+    const lletraOriginal = form.lletraOriginal.value;
+    const lletraTraduccio = tinymce.get('traduccioCatala').getContent();
+    const notes = obtenirNotasDelPentagrama();
+
+    console.log({
+        partituraId,
+        titol,
+        idioma,
+        lletraOriginal,
+        lletraTraduccio,
+        notes
+    });
+
+    const partitura = new Partitura(
+        partituraId,
+        titol,
+        idioma,
+        'ca',
+        lletraOriginal,
+        lletraTraduccio,
+        notes
+    );
+
+    try {
+        const resultat = await PartituraService.savePartitura(partitura);
+        window.location.href = "partitures.html";
+    } catch (error) {
+        console.error(error);
+        alert("Error al guardar la partitura.");
+    }
+}
+
+function reproducirSonido(idAudio) {
+    const audioElemento = document.getElementById(idAudio);
+    if (audioElemento) {
+        audioElemento.currentTime = 0;
+        audioElemento.play();
+    }
+}
+
+function pintarPentagrama() {
+    const notes = [
+        { nota: "DO", top: 155, audioId: "audio-do" },
+        { nota: "RE", top: 140, audioId: "audio-re" },
+        { nota: "MI", top: 125, audioId: "audio-mi" },
+        { nota: "FA", top: 110, audioId: "audio-fa" },
+        { nota: "SOL", top: 95, audioId: "audio-sol" },
+        { nota: "LA", top: 80, audioId: "audio-la" },
+        { nota: "SI", top: 65, audioId: "audio-si" },
+        { nota: "DO_AGUT", top: 50, audioId: "audio-do2" },
+    ];
+
+    const liniesTop = [15, 45, 75, 105, 135];
+    const container = document.getElementById("pentagrama-container");
+
+    container.innerHTML = ''; // Limpiar el pentagrama antes de pintarlo
+
+    for (let i = 0; i < 12; i++) {
+        const columna = document.createElement("div");
+        columna.className = "columna-pentagrama";
+
+        liniesTop.forEach(top => {
+            const linea = document.createElement("div");
+            linea.className = "linea";
+            linea.style.top = `${top}px`;
+            columna.appendChild(linea);
+        });
+
+        notes.forEach(note => {
+            const zona = document.createElement("div");
+            zona.className = "nota-zona";
+            zona.style.top = `${note.top}px`;
+            zona.dataset.note = note.nota;
+            zona.dataset.audioId = note.audioId;
+
+            zona.addEventListener("dragover", e => {
+                e.preventDefault();
             });
-        } else {
-            console.error('No se encontró el TinyMCE con id "lletraOriginal"');
-        }
-    });
 
+            const arrastrables = document.querySelectorAll(".nota-arrastrable");
+            let isSostenido = false;
+            arrastrables.forEach(nota => {
+                nota.addEventListener("dragstart", e => {
+                    const src = e.target.src;
+                    e.dataTransfer.setData("text/plain", src);
+                    isSostenido = src.includes("sust");
+                });
+            });
 
-    const pentagrama = document.getElementById('pentagrama');
-    const notas = document.querySelectorAll('.nota');
-    const lineas = Array.from(pentagrama.querySelectorAll('.linea'));
-    const MAX_NOTES = 12;
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            zona.addEventListener("dragenter", e => {
+                e.preventDefault();
+                let audioId = zona.dataset.audioId;
 
-    // Mapatge de notes a freqüències (escala temperada)
-    const notesFreq = {
-        C4: 261.63,
-        D4: 293.66,
-        E4: 329.63,
-        F4: 349.23,
-        G4: 392.00,
-        A4: 440.00,
-        B4: 493.88,
-        C5: 523.25
-    };
+                if (isSostenido) {
+                    audioId += "-sust";
+                }
 
-    // Funció per reproduir una nota
-    const playNote = (freq, duration = 0.5) => {
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
+                reproducirSonido(audioId);
+            });
 
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+            zona.addEventListener("drop", e => {
+                e.preventDefault();
+                const src = e.dataTransfer.getData("text/plain");
 
-        oscillator.start();
-        oscillator.stop(audioContext.currentTime + duration);
-    };
+                const wrapper = zona.closest(".columna-wrapper");
+                const notaExistente = wrapper.querySelector(".nota-img");
+                if (notaExistente) notaExistente.remove();
 
-    // Esdeveniment per iniciar l'arrossegament
-    notas.forEach(nota => {
-        nota.addEventListener('dragstart', (event) => {
-            event.dataTransfer.setData('text/plain', event.target.dataset.note);
+                const nota = document.createElement("div");
+                nota.className = "nota";
+
+                const img = document.createElement("img");
+
+                if (zona.dataset.note === "DO") {
+                    img.src = src.replace("nota1", "nota2");
+                } else {
+                    img.src = src;
+                }
+
+                img.className = "nota-img";
+                nota.appendChild(img);
+                zona.appendChild(nota);
+            });
+
+            columna.appendChild(zona);
         });
-    });
 
-    // Reproduir nota mentre es fa "dragover"
-    pentagrama.addEventListener('dragover', (event) => {
-        event.preventDefault();
-        const y = event.offsetY;
+        const botonBorrar = document.createElement("button");
+        botonBorrar.textContent = "Borrar nota";
+        botonBorrar.className = "btn-borrar";
+        botonBorrar.type = "button";
+        botonBorrar.addEventListener("click", () => {
+            const nota = columna.querySelector(".nota-img");
+            if (nota) nota.remove();
+        });
 
-        const note = lineas.reduce((closest, linea) => {
-            const distancia = Math.abs(linea.offsetTop - y);
-            return distancia < closest.distancia ? { note: linea.dataset.note, distancia } : closest;
-        }, { note: null, distancia: Infinity }).note;
+        const wrapper = document.createElement("div");
+        wrapper.className = "columna-wrapper";
+        wrapper.appendChild(columna);
+        wrapper.appendChild(botonBorrar);
 
-        if (note && notesFreq[note]) {
-            playNote(notesFreq[note], 0.2);
+        container.appendChild(wrapper);
+    }
+}
+
+function obtenirNotasDelPentagrama() {
+    const columnas = document.querySelectorAll(".columna-wrapper");
+    const notas = [];
+
+    columnas.forEach((wrapper, index) => {
+        const imgNota = wrapper.querySelector(".nota-img");
+        if (imgNota) {
+            const zona = imgNota.closest(".nota-zona");
+            if (zona) {
+                const nom = zona.dataset.note;
+                const type = imgNota.src.includes("sust") ? "sharp" : "regular";
+                const nota = new Nota(`${nom}-${index}`, nom, type, index + 1);
+                notas.push(nota);
+            }
         }
     });
 
-    // Manejar el drop
-    pentagrama.addEventListener('drop', (event) => {
-        event.preventDefault();
+    return notas;
+}
 
-        const notesActuals = pentagrama.querySelectorAll('.nota-en-pentagrama');
-        if (notesActuals.length >= MAX_NOTES) {
-            alert('Només es poden afegir un màxim de 12 notes al pentagrama.');
+function carregarNotesAlPentagrama(notas) {
+    notas.forEach(nota => {
+        const columna = document.querySelectorAll(".columna-wrapper")[nota.ordre - 1];
+        if (!columna) {
+            console.warn(`No se encontró la columna para la nota con orden ${nota.ordre}`);
             return;
         }
 
-        const y = event.offsetY;
+        const zona = Array.from(columna.querySelectorAll(".nota-zona"))
+            .find(z => z.dataset.note === nota.nom);
 
-        const note = lineas.reduce((closest, linea) => {
-            const distancia = Math.abs(linea.offsetTop - y);
-            return distancia < closest.distancia ? { note: linea.dataset.note, distancia } : closest;
-        }, { note: null, distancia: Infinity }).note;
-
-        if (note) {
-            const nuevaNota = document.createElement('div');
-            nuevaNota.classList.add('nota-en-pentagrama');
-            nuevaNota.textContent = note;
-
-            nuevaNota.style.position = 'absolute';
-            nuevaNota.style.left = `${event.offsetX}px`;
-            nuevaNota.style.top = `${y}px`;
-
-            nuevaNota.addEventListener('click', () => {
-                nuevaNota.remove();
-            });
-
-            pentagrama.appendChild(nuevaNota);
+        if (!zona) {
+            console.warn(`No se encontró la zona para la nota ${nota.nom} en la columna ${nota.ordre}`);
+            return;
         }
+
+        const notaExistente = zona.querySelector(".nota-img");
+        if (notaExistente) notaExistente.remove();
+
+        const divNota = document.createElement("div");
+        divNota.className = "nota";
+
+        const img = document.createElement("img");
+        img.className = "nota-img";
+        img.src = `../notesimg/nota1.png`;
+
+        divNota.appendChild(img);
+        zona.appendChild(divNota);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    TinyMCEService.init('#lletraOriginal, #traduccioCatala');
+    inicialitzarValidacio();
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    GoogleService.getIdiomes().then(idiomes => {
+        pintarIdiomesSelect(idiomes);
     });
 
-    // Reproduir partitura
-    const playPartitura = () => {
-        const notes = Array.from(pentagrama.querySelectorAll('.nota-en-pentagrama'));
-        let delay = 0;
+    pintarPentagrama();
 
-        notes.forEach(note => {
-            const noteName = note.textContent;
-            if (notesFreq[noteName]) {
-                setTimeout(() => playNote(notesFreq[noteName]), delay);
-                delay += 600; // 600ms entre notes
+    const id = urlParams.get('id');
+    if (id) {
+        PartituraService.carregarPartitura(id).then(async partitura => {
+            if (partitura) {
+                console.log(partitura)
+                await omplirFormulariPartitura(partitura);
             }
         });
-    };
+    }
 
-    // Afegir botó "Reproduir partitura"
-    const playButton = document.createElement('button');
-    playButton.textContent = 'Reproduir partitura';
-    playButton.addEventListener('click', playPartitura);
-    document.body.appendChild(playButton);
+    document.getElementById("btn-reproduir").addEventListener("click", () => {
+        PartituraService.reproduirMelodia(obtenirNotasDelPentagrama());
+    });
 
+    document.forms['form'].addEventListener('submit', guardarPartitura);
 
+    inicialitzarTraduccioAutomatica();
 
-
-
-
-
-
-    const validateForm = () => {
-        const { titol, idioma, lletraOriginal, traduccioCatala } = document.forms[0].elements;
-
-        const revisioNumParaules = /^(\b\w+\b\s*){3,}$/;
-        const htmlRevisio = /<\/?[a-z][\s\S]*>/i;
-
-        if (!revisioNumParaules.test(titol.value)) {
-            alert(`El títol ha de tenir mínim 3 paraules.`);
-            return false;
-        }
-
-        if (!htmlRevisio.test(lletraOriginal.value)) {
-            alert(`La lletra original ha de contenir codi HTML vàlid.`);
-            return false;
-        }
-
-        if (!htmlRevisio.test(traduccioCatala.value)) {
-            alert(`La traducció al català ha de contenir codi HTML vàlid.`);
-            return false;
-        }
-
-        if (idioma.value === 'ca' && lletraOriginal.value !== traduccioCatala.value) {
-            alert(`Si l'idioma original és Català, la lletra original i la traducció al català han de ser idèntiques.`);
-            return false;
-        }
-
-        window.location.href = 'https://iesmanacor.cat';
-    };
-})();
+});

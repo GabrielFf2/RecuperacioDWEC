@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partitura</title>
     <link rel="stylesheet" href="./css/creacioPartitures.css">
+
     <script src="https://cdn.tiny.cloud/1/oasi6u3843rabe5muosvcjhmotyrcvutfc07tjmg4t2il3wv/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script></head>
 <body>
 <header>
     <h1>Score Finder</h1>
 </header>
 
-<form id="creacioPartituraForm" data-idpartitura="">
+<form name="form" id="creacioPartituraForm" data-idpartitura="">
+    <input type="hidden" id="partitura-id">
     <label for="titol">Títol:</label>
     <input type="text" id="titol" name="titol" required>
 
-    <label for="idioma">Idioma original:</label>
-    <select id="idioma" name="idioma" required></select>
+    <label for="idioma-select">Idioma original:</label>
+    <select id="idioma-select" name="idioma" required></select>
 
     <br>
     <label for="lletraOriginal">Lletra original:</label>
@@ -25,23 +27,24 @@
     <label for="traduccioCatala">Traducció al català:</label>
     <textarea id="traduccioCatala" name="traduccioCatala"></textarea>
 
-    <div id="pentagrama" class="pentagrama">
-        <div class="linea" data-note="C4"></div>
-        <div class="linea" data-note="D4"></div>
-        <div class="linea" data-note="E4"></div>
-        <div class="linea" data-note="F4"></div>
-        <div class="linea" data-note="G4"></div>
-        <div class="linea" data-note="A4"></div>
-        <div class="linea" data-note="B4"></div>
-        <div class="linea" data-note="C5"></div>
+    <div id="pentagrama-container"></div>
+    <div id="nota-original-container">
+        <img src="./notesimg/nota1.png" alt="Nota" id="nota1" class="nota-arrastrable" draggable="true">
+        <button id="btn-reproduir" type="button">Reproduir partitura</button>
     </div>
 
-    <div id="notas" class="notas">
-        <img src="./notesimg/nota1.png" class="nota" draggable="true" data-note="C4" alt="Nota Negra">
-    </div>
-
+    <br><br>
     <input type="submit" value="Desar Partitura">
 </form>
+
+<audio id="audio-do" src="audio/do.mp3"></audio>
+<audio id="audio-re" src="audio/re.mp3"></audio>
+<audio id="audio-mi" src="audio/mi.mp3"></audio>
+<audio id="audio-fa" src="audio/fa.mp3"></audio>
+<audio id="audio-sol" src="audio/sol.mp3"></audio>
+<audio id="audio-la" src="audio/la.mp3"></audio>
+<audio id="audio-si" src="audio/si.mp3"></audio>
+<audio id="audio-do2" src="audio/do7.mp3"></audio>
 
 
 <script type="module" src="views/formulari.js"></script>

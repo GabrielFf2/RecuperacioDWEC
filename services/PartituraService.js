@@ -5,7 +5,7 @@ import {Nota} from "../model/Nota.js";
 let cerca = [];
 
 let token = localStorage.getItem('token')
-export const partituraService = {
+export const PartituraService = {
 
 
     async getPartitures() {

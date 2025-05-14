@@ -1,4 +1,4 @@
-import {partituraService} from "./PartituraService.js";
+import {PartituraService} from "./PartituraService.js";
 
 (() => {
     document.addEventListener('DOMContentLoaded', async () => {
@@ -21,7 +21,7 @@ import {partituraService} from "./PartituraService.js";
         });
 
 
-        const partitures = await partituraService.getPartitures();
+        const partitures = await PartituraService.getPartitures();
 
         const tableContainer = document.getElementById('table-container');
         partitures.forEach(partitura => {

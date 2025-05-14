@@ -1,68 +1,126 @@
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 70px auto;
+    font-family: 'Poppins', sans-serif;
+}
+
 header {
-    background: #da352f;
-    width: 90%;
-    margin: auto;
-    height: 40px;
     display: flex;
+    flex-direction: row;
+    height: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    background-color: red;
+}
+
+h1 {
+    padding: 0 30px;
+    font-family: 'Lobster', cursive;
     color: white;
 }
 
-header h1 {
-    font-weight: bold;
+textarea {
+    visibility: visible !important;
 }
 
-header a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
+#pentagrama-container {
+    display: flex;
+    gap: 0px;
+    background-color: #fff;
 }
 
-form{
-    margin: 10px 100px;
-}
-
-#pentagrama {
+.columna-pentagrama {
     position: relative;
     width: 100%;
-    height: 200px;
-    border: 1px solid black;
-    background-color: #f9f9f9;
+    height: 180px;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
 .linea {
     position: absolute;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: black;
 }
 
-.linea:nth-child(1) { top: 10%; }
-.linea:nth-child(2) { top: 20%; }
-.linea:nth-child(3) { top: 30%; }
-.linea:nth-child(4) { top: 40%; }
-.linea:nth-child(5) { top: 50%; }
-.linea:nth-child(6) { top: 60%; }
-.linea:nth-child(7) { top: 70%; }
-.linea:nth-child(8) { top: 80%; }
+.nota-zona {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    top: 0;
+}
+
+.nota-zona:hover {
+    border: 2px solid blue;
+}
 
 .nota {
-    width: 30px;
-    cursor: grab;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.2s ease;
 }
 
-button {
-    margin: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
+.nota-img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -75%);
+    pointer-events: none;
+}
+
+
+.nota-arrastrable {
+    width: 30px;
+    cursor: pointer;
+    margin: 10px;
+    display: inline-block;
+    user-select: none;
+}
+
+.btn-borrar {
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 5px;
+    font-size: 12px;
+    background-color: #e74c3c;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
-button:hover {
-    background-color: #45a049;
+.btn-borrar:hover {
+    background-color: #c0392b;
+}
+
+.columna-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1px;
+}
+
+#btn-reproduir {
+    margin-top: 5px;
+    display: block;
+    padding: 5px;
+    font-size: 12px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
 }
