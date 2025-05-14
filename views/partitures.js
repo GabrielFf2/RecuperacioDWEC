@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
+    document.getElementById('logoutButton').addEventListener('click', () => {
+        localStorage.clear();
+        alert('Sessió tancada correctament!');
+        window.location.reload();
+    });
+
     console.log("Partitures cargadas:", partitures);
 
     function crearTaula() {

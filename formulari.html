@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partitura</title>
     <link rel="stylesheet" href="./css/creacioPartitures.css">
-
     <script src="https://cdn.tiny.cloud/1/oasi6u3843rabe5muosvcjhmotyrcvutfc07tjmg4t2il3wv/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script></head>
 <body>
 <header>
@@ -26,24 +25,24 @@
     <label for="traduccioCatala">Traducció al català:</label>
     <textarea id="traduccioCatala" name="traduccioCatala"></textarea>
 
-    <div id="notesContainer">
-        <h3>Notes:</h3>
-        <ul id="notesList"></ul>
+    <div id="pentagrama" class="pentagrama">
+        <div class="linea" data-note="C4"></div>
+        <div class="linea" data-note="D4"></div>
+        <div class="linea" data-note="E4"></div>
+        <div class="linea" data-note="F4"></div>
+        <div class="linea" data-note="G4"></div>
+        <div class="linea" data-note="A4"></div>
+        <div class="linea" data-note="B4"></div>
+        <div class="linea" data-note="C5"></div>
+    </div>
+
+    <div id="notas" class="notas">
+        <img src="./notesimg/nota1.png" class="nota" draggable="true" data-note="C4" alt="Nota Negra">
     </div>
 
     <input type="submit" value="Desar Partitura">
 </form>
 
-
-<script>
-    tinymce.init({
-        selector: '#lletraOriginal, #traduccioCatala',
-        language: 'ca',
-        plugins: 'lists link image table code',
-        toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
-        api_key: 'oasi6u3843rabe5muosvcjhmotyrcvutfc07tjmg4t2il3wv'
-    });
-</script>
 
 <script type="module" src="views/formulari.js"></script>
 </body>

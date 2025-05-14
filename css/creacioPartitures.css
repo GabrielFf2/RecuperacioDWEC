@@ -23,3 +23,46 @@ header a {
 form{
     margin: 10px 100px;
 }
+
+#pentagrama {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+    background-color: #f9f9f9;
+}
+
+.linea {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+.linea:nth-child(1) { top: 10%; }
+.linea:nth-child(2) { top: 20%; }
+.linea:nth-child(3) { top: 30%; }
+.linea:nth-child(4) { top: 40%; }
+.linea:nth-child(5) { top: 50%; }
+.linea:nth-child(6) { top: 60%; }
+.linea:nth-child(7) { top: 70%; }
+.linea:nth-child(8) { top: 80%; }
+
+.nota {
+    width: 30px;
+    cursor: grab;
+}
+
+button {
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}

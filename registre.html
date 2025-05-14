@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registre</title>
+    <link rel="stylesheet" href="./css/registre.css">
+</head>
+<body>
+<form id="registreForm" class="registre-form" novalidate>
+    <h2>Registre - Score Finder</h2>
+
+    <label for="nom">Nom i Cognoms</label>
+    <input type="text" id="nom" name="nom" minlength="3" maxlength="20" required>
+    <span class="error" id="nomError"></span>
+
+    <label for="email">Correu electrònic</label>
+    <input type="email" id="email" name="email" required>
+    <span class="error" id="emailError"></span>
+
+    <label for="password">Contrasenya</label>
+    <input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,8}$" required>
+    <span class="error" id="passwordError"></span>
+
+    <label for="confirmPassword">Validació de Contrasenya</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <span class="error" id="confirmPasswordError"></span>
+
+    <button type="submit">Registrar-se</button>
+</form>
+
+<script type="module" src="views/registre.js"></script>
+</body>
+</html>

@@ -4,15 +4,18 @@ import {Nota} from "../model/Nota.js";
 
 let cerca = [];
 
+let token = localStorage.getItem('token')
 export const partituraService = {
 
+
     async getPartitures() {
-        const url = "https://theteacher.codiblau.com/piano/nologin/score/list";
+        const url = "https://theteacher.codiblau.com/piano/score/list";
         try {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': token
                 }
             });
 
@@ -33,12 +36,13 @@ export const partituraService = {
     },
 
     async savePartitura(partitura) {
-        const url = "https://theteacher.codiblau.com/piano/nologin/score/save";
+        const url = "https://theteacher.codiblau.com/piano/score/save";
         try {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': token
                 },
                 body: JSON.stringify({ score: partitura })
             });
@@ -56,12 +60,13 @@ export const partituraService = {
     },
 
     async deletePartitura(id) {
-        const url = "https://theteacher.codiblau.com/piano/nologin/score/delete";
+        const url = "https://theteacher.codiblau.com/piano/score/delete";
         try {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': token
                 },
                 body: JSON.stringify({ id })
             });

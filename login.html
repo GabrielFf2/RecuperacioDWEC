@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<form class="login-form">
-    <h2>Score Finder</h2>
-    <label for="email">Correu electrònic</label>
-    <input type="text" id="email" placeholder="Correu electrònic" required>
-    <label for="password">Password</label>
-    <input type="password" id="password" placeholder="Password" required>
+<form id="loginForm" class="login-form">
+    <h2>Inicia sessió</h2>
+    <label for="usuari">Usuari</label>
+    <input type="text" id="usuari" name="usuari" required>
+    <label for="password">Contrasenya</label>
+    <input type="password" id="password" name="password" required>
     <button type="submit">Entrar</button>
+    <span class="error" id="loginError"></span>
 </form>
 </body>
+<script src="./views/login.js"></script>
 </html>

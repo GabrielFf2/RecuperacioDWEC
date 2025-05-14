@@ -4,11 +4,19 @@ import { GoogleService } from "../services/GoogleService.js";
 import { Partitura } from "../model/Partitura.js";
 import { partituraService } from "../services/PartituraService.js";
 import { TraduccionService } from "../services/TraduccionService.js";
+import { TinyMCEService } from '../services/TinyMCEService.js';
 
 
 (async () => {
     document.addEventListener('DOMContentLoaded', async () => {
 
+
+        TinyMCEService.init('#lletraOriginal, #traduccioCatala');
+
+        const content = TinyMCEService.getEditorContent('lletraOriginal');
+        console.log('Contenido del editor:', content);
+
+        TinyMCEService.setEditorContent('traduccioCatala', '<p>Texto de ejemplo</p>');
         await carregarIdiomes();
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -57,8 +65,20 @@ import { TraduccionService } from "../services/TraduccionService.js";
             const partituraoriginal = form.elements['lletraOriginal'].value;
             const partituratraduccio = form.elements['traduccioCatala'].value;
             const idiomaoriginal = form.elements['idioma'].value;
+            const notes = Array.from(document.querySelectorAll('.nota-en-pentagrama')).map((nota, index) => ({
+                note: nota.textContent,
+                type: nota.dataset.type || 'regular',
+                ordre: index + 1
+            }));
 
-            const partitura = new Partitura(idpartitura, name, partituraoriginal, partituratraduccio, idiomaoriginal);
+            const partitura = new Partitura(
+                idpartitura,
+                name,
+                partituraoriginal,
+                partituratraduccio,
+                idiomaoriginal,
+                notes
+            );
 
             try {
                 const message = await partituraService.savePartitura(partitura);
@@ -117,6 +137,118 @@ import { TraduccionService } from "../services/TraduccionService.js";
             console.error('No se encontró el TinyMCE con id "lletraOriginal"');
         }
     });
+
+
+    const pentagrama = document.getElementById('pentagrama');
+    const notas = document.querySelectorAll('.nota');
+    const lineas = Array.from(pentagrama.querySelectorAll('.linea'));
+    const MAX_NOTES = 12;
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Mapatge de notes a freqüències (escala temperada)
+    const notesFreq = {
+        C4: 261.63,
+        D4: 293.66,
+        E4: 329.63,
+        F4: 349.23,
+        G4: 392.00,
+        A4: 440.00,
+        B4: 493.88,
+        C5: 523.25
+    };
+
+    // Funció per reproduir una nota
+    const playNote = (freq, duration = 0.5) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + duration);
+    };
+
+    // Esdeveniment per iniciar l'arrossegament
+    notas.forEach(nota => {
+        nota.addEventListener('dragstart', (event) => {
+            event.dataTransfer.setData('text/plain', event.target.dataset.note);
+        });
+    });
+
+    // Reproduir nota mentre es fa "dragover"
+    pentagrama.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        const y = event.offsetY;
+
+        const note = lineas.reduce((closest, linea) => {
+            const distancia = Math.abs(linea.offsetTop - y);
+            return distancia < closest.distancia ? { note: linea.dataset.note, distancia } : closest;
+        }, { note: null, distancia: Infinity }).note;
+
+        if (note && notesFreq[note]) {
+            playNote(notesFreq[note], 0.2);
+        }
+    });
+
+    // Manejar el drop
+    pentagrama.addEventListener('drop', (event) => {
+        event.preventDefault();
+
+        const notesActuals = pentagrama.querySelectorAll('.nota-en-pentagrama');
+        if (notesActuals.length >= MAX_NOTES) {
+            alert('Només es poden afegir un màxim de 12 notes al pentagrama.');
+            return;
+        }
+
+        const y = event.offsetY;
+
+        const note = lineas.reduce((closest, linea) => {
+            const distancia = Math.abs(linea.offsetTop - y);
+            return distancia < closest.distancia ? { note: linea.dataset.note, distancia } : closest;
+        }, { note: null, distancia: Infinity }).note;
+
+        if (note) {
+            const nuevaNota = document.createElement('div');
+            nuevaNota.classList.add('nota-en-pentagrama');
+            nuevaNota.textContent = note;
+
+            nuevaNota.style.position = 'absolute';
+            nuevaNota.style.left = `${event.offsetX}px`;
+            nuevaNota.style.top = `${y}px`;
+
+            nuevaNota.addEventListener('click', () => {
+                nuevaNota.remove();
+            });
+
+            pentagrama.appendChild(nuevaNota);
+        }
+    });
+
+    // Reproduir partitura
+    const playPartitura = () => {
+        const notes = Array.from(pentagrama.querySelectorAll('.nota-en-pentagrama'));
+        let delay = 0;
+
+        notes.forEach(note => {
+            const noteName = note.textContent;
+            if (notesFreq[noteName]) {
+                setTimeout(() => playNote(notesFreq[noteName]), delay);
+                delay += 600; // 600ms entre notes
+            }
+        });
+    };
+
+    // Afegir botó "Reproduir partitura"
+    const playButton = document.createElement('button');
+    playButton.textContent = 'Reproduir partitura';
+    playButton.addEventListener('click', playPartitura);
+    document.body.appendChild(playButton);
+
+
+
 
 
 

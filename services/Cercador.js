@@ -1,24 +1,8 @@
 "use strict";
 
-export const cercador = (cercaActual, partitures, updateCercadorInput) => {
-    const resultContainer = document.getElementById("result-container");
-
-    const renderResults = (results) => {
-        resultContainer.innerHTML = "";
-        results.forEach((partitura) => {
-            const resultItem = document.createElement("div");
-            resultItem.className = "result-item";
-            resultItem.innerHTML = `
-                <p>${partitura.titol} <a class="lyric">Lletra</a></p>
-                <button class="button reproduir">Reproduir cançó</button>
-            `;
-            resultContainer.appendChild(resultItem);
-
-        });
-    };
-
-    document.querySelector(".cercar").addEventListener("click", () => {
-        const results = partitures.filter((partitura) => {
+export const cercador = (cercaActual, partitures, updateCercadorInput, renderResults, clearResults) => {
+    const filterResults = () => {
+        return partitures.filter((partitura) => {
             const notesPartitura = partitura.notes;
 
             let i = 0;
@@ -31,16 +15,22 @@ export const cercador = (cercaActual, partitures, updateCercadorInput) => {
                 j++;
             }
 
+            console.log(`Partitura: ${partitura}, Match: ${i === cercaActual.length}`);
             return i === cercaActual.length;
         });
+    };
 
+    const handleSearch = () => {
+        const results = filterResults();
         renderResults(results);
-    });
+    };
 
-    document.querySelector(".borrar").addEventListener("click", () => {
+    const handleClear = () => {
         cercaActual.length = 0;
         updateCercadorInput(cercaActual);
-        resultContainer.innerHTML = "";
+        clearResults();
         console.log("Cerca esborrada");
-    });
+    };
+
+    return { handleSearch, handleClear };
 };
