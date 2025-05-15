@@ -1,6 +1,6 @@
 'use strict';
 
-import {Nota} from "../model/Nota.js";
+import {Note} from "../model/Note.js";
 
 let cerca = [];
 
@@ -97,7 +97,7 @@ export const PartituraService = {
 
 
     addCerca(nom, sostingut) {
-        cerca.push(new Nota(nom, sostingut));
+        cerca.push(new Note(nom, sostingut));
     },
 
     reproduirPartitura(notes, button) {

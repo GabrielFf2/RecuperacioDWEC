@@ -1,7 +1,7 @@
 import { GoogleService } from "../services/GoogleService.js";
 import { PartituraService } from "../services/PartituraService.js";
 import { Partitura } from "../model/Partitura.js";
-import { Nota } from "../model/Nota.js";
+import { Note } from "../model/Note.js";
 import { TraduccionService } from "../services/TraduccionService.js";
 import {TinyMCEService} from "../services/TinyMCEService.js";
 
@@ -253,7 +253,7 @@ function obtenirNotasDelPentagrama() {
             if (zona) {
                 const nom = zona.dataset.note;
                 const type = imgNota.src.includes("sust") ? "sharp" : "regular";
-                const nota = new Nota(`${nom}-${index}`, nom, type, index + 1);
+                const nota = new Note(`${nom}-${index}`, nom, type, index + 1);
                 notas.push(nota);
             }
         }
