@@ -1,6 +1,7 @@
 'use strict';
 
 import {Note} from "../model/Note.js";
+import { mostrarNotificacio, notificarRespostaServidor } from "../utils/notifications.js";
 
 let cerca = [];
 
@@ -34,7 +35,6 @@ export const PartituraService = {
             return [];
         }
     },
-
     async savePartitura(partitura) {
         const url = "https://theteacher.codiblau.com/piano/score/save";
         try {
@@ -47,14 +47,16 @@ export const PartituraService = {
                 body: JSON.stringify({ score: partitura })
             });
 
+            const result = await response.json();
+
             if (!response.ok) {
-                throw new Error(`Error: ${response.status} ${response.statusText}`);
+                throw result;
             }
 
-            const result = await response.json();
+            notificarRespostaServidor(result);
             return result.message;
         } catch (error) {
-            console.error("Error enviant la partitura al servidor:", error);
+            mostrarNotificacio("Error", error.notifyMessage || "Error desant la partitura.");
             throw error;
         }
     },
@@ -153,62 +155,4 @@ export const PartituraService = {
         return cerca;
     },
 
-
-    crearBotonEditar(partituraId) {
-        if (!partituraId) {
-            console.error("El ID de la partitura no es válido:", partituraId);
-            return null;
-        }
-
-        const btn = document.createElement("button");
-        btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Editar';
-        btn.classList.add("btn", "edit-btn");
-        btn.addEventListener("click", () => {
-            window.location.href = `formulari.html?id=${encodeURIComponent(partituraId)}`;
-        });
-        return btn;
-    },
-
-    crearBotonEsborrar(partituraId) {
-        const btn = document.createElement("button");
-        btn.innerHTML = '<i class="fa-solid fa-trash"></i> Esborrar';
-        btn.classList.add("btn", "delete-btn");
-        btn.addEventListener("click", async () => {
-            if (confirm(`Està segur que vol esborrar aquest element amb ID ${partituraId}?`)) {
-                try {
-                    const message = await this.deletePartitura(partituraId);
-                    alert(message);
-                    window.location.reload();
-                } catch (error) {
-                    alert("Error esborrant la partitura. Revisa la consola per més detalls.");
-                    console.error(error);
-                }
-            }
-        });
-        return btn;
-    },
-
-    crearBotonVerLetra(partitura) {
-        if (!partitura || !partitura.lletraoriginal) {
-            console.error("La partitura no es válida o no tiene letra:", partitura);
-            return null;
-        }
-
-        const btn = document.createElement("button");
-        btn.textContent = "Ver letra";
-        btn.classList.add("btn", "view-btn");
-        btn.addEventListener("click", () => {
-            const modal = document.getElementById("modal");
-            const modalTitle = document.getElementById("modal-title");
-            const originalLyrics = document.getElementById("original-lyrics");
-            const translatedLyrics = document.getElementById("translated-lyrics");
-
-            modalTitle.textContent = partitura.titol || "Sin título";
-            originalLyrics.textContent = partitura.lletraoriginal || "Letra no disponible";
-            translatedLyrics.textContent = partitura.lletratraduccio || "Traducción no disponible";
-
-            modal.style.display = "block";
-        });
-        return btn;
-    }
 };

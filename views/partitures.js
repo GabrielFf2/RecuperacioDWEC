@@ -2,17 +2,81 @@
 
 import { PartituraService } from "../services/PartituraService.js";
 
+function mostrarNotificacio(titol, missatge) {
+    const notificacio = document.createElement("div");
+    notificacio.className = "notificacio";
+    notificacio.innerHTML = `
+        <strong>${titol}</strong>
+        <p>${missatge}</p>
+    `;
+    document.body.appendChild(notificacio);
+
+    setTimeout(() => {
+        notificacio.remove();
+    }, 3000);
+}
+
+function crearBotonEditar(partituraId) {
+    const btn = document.createElement("button");
+    btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Editar';
+    btn.classList.add("btn", "edit-btn");
+    btn.addEventListener("click", () => {
+        window.location.href = `formulari.html?id=${encodeURIComponent(partituraId)}`;
+    });
+    return btn;
+}
+
+function crearBotonEsborrar(partituraId) {
+    const btn = document.createElement("button");
+    btn.innerHTML = '<i class="fa-solid fa-trash"></i> Esborrar';
+    btn.classList.add("btn", "delete-btn");
+    btn.addEventListener("click", async () => {
+        if (confirm(`Està segur que vol esborrar aquest element amb ID ${partituraId}?`)) {
+            try {
+                const message = await PartituraService.deletePartitura(partituraId);
+                mostrarNotificacio("Èxit", message);
+                window.location.reload();
+            } catch (error) {
+                mostrarNotificacio("Error", "No s'ha pogut esborrar la partitura.");
+                console.error(error);
+            }
+        }
+    });
+    return btn;
+}
+
+function crearBotonVerLetra(partitura) {
+    const btn = document.createElement("button");
+    btn.textContent = "Ver letra";
+    btn.classList.add("btn", "view-btn");
+    btn.addEventListener("click", () => {
+        const modal = document.getElementById("modal");
+        const modalTitle = document.getElementById("modal-title");
+        const originalLyrics = document.getElementById("original-lyrics");
+        const translatedLyrics = document.getElementById("translated-lyrics");
+
+        modalTitle.textContent = partitura.titol || "Sin título";
+        originalLyrics.textContent = partitura.lletraoriginal || "Letra no disponible";
+        translatedLyrics.textContent = partitura.lletratraduccio || "Traducción no disponible";
+
+        modal.style.display = "block";
+    });
+    return btn;
+}
+
+export { crearBotonEditar, crearBotonEsborrar, crearBotonVerLetra };
+
 document.addEventListener("DOMContentLoaded", async () => {
     const partitures = await PartituraService.getPartitures();
 
     if (!partitures || partitures.length === 0) {
-        console.error("No se encontraron partituras.");
+        mostrarNotificacio("Error", "No se encontraron partituras.");
         return;
     }
 
     document.getElementById('logoutButton').addEventListener('click', () => {
         localStorage.clear();
-        alert('Sessió tancada correctament!');
+        mostrarNotificacio("Èxit", "Sessió tancada correctament!");
         window.location.reload();
     });
 
@@ -62,18 +126,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             fila.appendChild(tdNotes);
 
             const tdAccions = document.createElement("td");
-            const btnEditar = PartituraService.crearBotonEditar(partitura.idpartitura);
-            const btnEsborrar = PartituraService.crearBotonEsborrar(partitura.idpartitura);
-            const btnVeure = PartituraService.crearBotonVerLetra(partitura);
-            if (btnVeure) {
-                tdAccions.appendChild(btnVeure);
-            } else {
-                console.error("No se pudo crear el botón Ver Letra para la partitura:", partitura);
-            }
-
-            tdAccions.appendChild(btnEditar);
-            tdAccions.appendChild(btnEsborrar);
-            tdAccions.appendChild(btnVeure);
+            tdAccions.appendChild(crearBotonEditar(partitura.idpartitura));
+            tdAccions.appendChild(crearBotonEsborrar(partitura.idpartitura));
+            tdAccions.appendChild(crearBotonVerLetra(partitura));
 
             fila.appendChild(tdAccions);
             tbody.appendChild(fila);

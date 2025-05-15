@@ -122,3 +122,29 @@ nav a:not(:first-child) {
 .view-btn{
     background: gray;
 }
+
+
+.notificacio {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.notificacio strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px); }
+    10%, 90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(20px); }
+}
