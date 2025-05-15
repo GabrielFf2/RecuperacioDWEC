@@ -262,7 +262,7 @@ function obtenirNotasDelPentagrama() {
     return notas;
 }
 
-function carregarNotesAlPentagrama(notas) {
+export function carregarNotesAlPentagrama(notas) {
     notas.forEach(nota => {
         const columna = document.querySelectorAll(".columna-wrapper")[nota.ordre - 1];
         if (!columna) {

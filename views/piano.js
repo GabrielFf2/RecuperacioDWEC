@@ -3,9 +3,28 @@
 import { tecles } from "../services/TeclesPiano.js";
 import { cercador } from "../services/Cercador.js";
 import { cercadorView } from "./cercadorView.js";
-import { partituraService } from "../services/PartituraService.js";
+import { PartituraService } from "../services/PartituraService.js";
+import { mostrarNotificacio } from "../utils/notifications.js";
+import { VideosView } from "./VideosView.js";
+
 
 (() => {
+
+    VideosView.renderVideos();
+
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js")
+            .then((registration) => {
+                console.log("Service Worker registrado con éxito:", registration.scope);
+            })
+            .catch((error) => {
+                console.error("Error al registrar el Service Worker:", error);
+            });
+    } else {
+        console.warn("Service Workers no son compatibles con este navegador.");
+    }
+
+
     let cercaActual = [];
 
     const updateCercadorInput = (cercaActual) => {
@@ -14,7 +33,7 @@ import { partituraService } from "../services/PartituraService.js";
     };
 
     const loadPartitures = async () => {
-        const partitures = await partituraService.getPartitures();
+        const partitures = await PartituraService.getPartitures();
         console.log("Partitures carregades:", partitures);
 
         if (!Array.isArray(partitures)) {
@@ -104,7 +123,9 @@ import { partituraService } from "../services/PartituraService.js";
             const copyToClipboard = async (text) => {
                 try {
                     await navigator.clipboard.writeText(text);
+                    mostrarNotificacio("Èxit", "La lletra s'ha copiat correctament al porta-retalls.");
                 } catch (err) {
+                    mostrarNotificacio("Error", "No s'ha pogut copiar la lletra.");
                     console.error("Error en copiar al portapapers:", err);
                 }
             };

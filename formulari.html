@@ -33,6 +33,17 @@
         <button id="btn-reproduir" type="button">Reproduir partitura</button>
     </div>
 
+    <div id="audio-recording">
+        <h2>Afegir Notes amb Gravació</h2>
+        <video id="video-preview" autoplay muted></video>
+        <div>
+            <button type="button" id="start-recording">Iniciar Gravació</button>
+            <button type="button" id="stop-recording">Aturar Gravació</button>
+            <button type="button" id="send-recording">Enviar Gravació</button>
+        </div>
+        <p id="notification"></p>
+    </div>
+
     <br><br>
     <input type="submit" value="Desar Partitura">
 </form>
@@ -46,7 +57,7 @@
 <audio id="audio-si" src="audio/si.mp3"></audio>
 <audio id="audio-do2" src="audio/do7.mp3"></audio>
 
-
+<script type="module" src="./views/RecordView.js"></script>
 <script type="module" src="views/formulari.js"></script>
 </body>
 </html>

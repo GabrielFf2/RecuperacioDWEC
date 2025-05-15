@@ -1,8 +1,11 @@
 'use strict';
 
+import { mostrarNotificacio } from "../utils/notifications.js";
+
 export class TraduccionService {
     static async traduir(languageFrom, text) {
         if (languageFrom === 'ca') {
+            mostrarNotificacio("Informació", "El text ja està en català.");
             return text;
         }
 
@@ -21,13 +24,15 @@ export class TraduccionService {
 
             if (response.ok) {
                 const data = await response.text();
+                mostrarNotificacio("Èxit", "Traducció completada correctament.");
                 return data;
             } else {
-                console.error('Error en la traducción:', response.statusText);
+                mostrarNotificacio("Error", "Error en la traducció: " + response.statusText);
                 return '';
             }
         } catch (error) {
-            console.error('Error en la petición de traducción:', error);
+            mostrarNotificacio("Error", "Error en la petició de traducció.");
+            console.error('Error en la petició de traducció:', error);
             return '';
         }
     }

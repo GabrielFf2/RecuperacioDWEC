@@ -42,9 +42,9 @@ export const PartituraService = {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': token
+                    'Authorization': localStorage.getItem('token'),
                 },
-                body: JSON.stringify({ score: partitura })
+                body: JSON.stringify({ score: partitura }),
             });
 
             const result = await response.json();
@@ -68,19 +68,21 @@ export const PartituraService = {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': token
+                    'Authorization': localStorage.getItem('token'),
                 },
-                body: JSON.stringify({ id })
+                body: JSON.stringify({ id }),
             });
 
+            const result = await response.json();
+
             if (!response.ok) {
-                throw new Error(`Error: ${response.status} ${response.statusText}`);
+                throw result;
             }
 
-            const result = await response.json();
+            notificarRespostaServidor(result);
             return result.message;
         } catch (error) {
-            console.error("Error esborrant la partitura al servidor:", error);
+            mostrarNotificacio("Error", error.notifyMessage || "Error esborrant la partitura.");
             throw error;
         }
     },

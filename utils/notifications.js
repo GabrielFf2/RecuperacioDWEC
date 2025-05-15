@@ -7,23 +7,21 @@ export function mostrarNotificacio(titol, missatge) {
     }
 
     if (Notification.permission === "granted") {
-        notifica(titol, missatge);
-    } else if (Notification.permission !== "denied") {
+        new Notification(titol, {
+            body: missatge,
+            icon: "./imgs/logo.png",
+        });
+    }else if (Notification.permission !== "denied") {
         Notification.requestPermission().then(permission => {
             if (permission === "granted") {
-                notifica(titol, missatge);
+                new Notification(titol, {
+                    body: missatge,
+                    icon: "./img/logo.png",
+                });
             }
         });
     }
 }
-
-function notifica(titol, missatge) {
-    new Notification(titol, {
-        body: missatge,
-        icon: "../imgs/logo.jpg"
-    });
-}
-
 
 export function notificarRespostaServidor(resposta) {
     const titol = resposta.notifyType || "Informació";
