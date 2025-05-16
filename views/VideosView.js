@@ -11,17 +11,29 @@ export const VideosView = {
         const videoElements = [];
 
         videos.forEach((video) => {
-            const iframe = document.createElement("iframe");
-            iframe.src = video.src;
-            iframe.width = "560";
-            iframe.height = "315";
-            iframe.frameBorder = "0";
-            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-            iframe.allowFullscreen = true;
-            iframe.className = "video-player";
+            if (video.src.endsWith(".mp4")) {
+                const videoElement = document.createElement("video");
+                videoElement.src = video.src;
+                videoElement.width = 560;
+                videoElement.height = 315;
+                videoElement.controls = true;
+                videoElement.className = "video-player";
 
-            videoContainer.appendChild(iframe);
-            videoElements.push(iframe);
+                videoContainer.appendChild(videoElement);
+                videoElements.push(videoElement);
+            } else {
+                const iframe = document.createElement("iframe");
+                iframe.src = video.src;
+                iframe.width = "560";
+                iframe.height = "315";
+                iframe.frameBorder = "0";
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                iframe.allowFullscreen = true;
+                iframe.className = "video-player";
+
+                videoContainer.appendChild(iframe);
+                videoElements.push(iframe);
+            }
         });
 
         const pipButton = document.createElement("button");
@@ -31,17 +43,15 @@ export const VideosView = {
 
         document.body.prepend(videoContainer);
 
-        // Activar Picture in Picture
         pipButton.addEventListener("click", async () => {
-            const activeVideo = videoElements.find((video) => !video.paused);
+            const activeVideo = videoElements.find((video) => {
+                if (video.tagName === "VIDEO") {
+                    return !video.paused;
+                }
+                return false;
+            });
 
             if (activeVideo) {
-                // Verifica si el vídeo es de YouTube
-                if (activeVideo.src.includes("youtube.com") || activeVideo.src.includes("youtu.be")) {
-                    alert("El mode 'Picture in Picture' no és compatible amb vídeos de YouTube.");
-                    return;
-                }
-
                 try {
                     if (document.pictureInPictureElement) {
                         await document.exitPictureInPicture();
@@ -52,7 +62,7 @@ export const VideosView = {
                     console.error("Error al activar Picture in Picture:", error);
                 }
             } else {
-                alert("No hi ha cap vídeo reproduint-se.");
+                alert("No hi ha cap vídeo reproduint-se o el vídeo no és compatible amb Picture in Picture.");
             }
         });
     },
