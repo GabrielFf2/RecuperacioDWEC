@@ -2,7 +2,7 @@
 
 export const RecordingService = {
     initMediaRecorder: async (videoElement) => {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
         videoElement.srcObject = stream;
 
         const mediaRecorder = new MediaRecorder(stream);
@@ -22,11 +22,7 @@ export const RecordingService = {
 
         return new Promise((resolve) => {
             mediaRecorder.onstop = () => {
-                const blob = new Blob(recordedChunks, { type: "video/webm" });
-                videoElement.srcObject = null;
-                videoElement.src = URL.createObjectURL(blob);
-                videoElement.controls = true;
-                videoElement.play();
+                const blob = new Blob(recordedChunks, { type: "audio/webm" });
                 resolve(blob);
             };
         });
@@ -34,7 +30,7 @@ export const RecordingService = {
 
     sendRecording: async (blob) => {
         const formData = new FormData();
-        formData.append("arxiu", blob);
+        formData.append("arxiu", blob, "audio.webm");
 
         const response = await fetch("https://theteacher.codiblau.com/piano/google/transcribe", {
             method: "POST",

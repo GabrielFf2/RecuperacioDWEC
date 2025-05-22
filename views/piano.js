@@ -12,7 +12,7 @@ import { VideosView } from "./VideosView.js";
 
     VideosView.renderVideos();
 
-    if ("serviceWorker" in navigator) {
+    /*if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/service-worker.js")
             .then((registration) => {
                 console.log("Service Worker registrado con éxito:", registration.scope);
@@ -22,7 +22,7 @@ import { VideosView } from "./VideosView.js";
             });
     } else {
         console.warn("Service Workers no son compatibles con este navegador.");
-    }
+    }*/
 
 
     let cercaActual = [];

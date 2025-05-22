@@ -113,16 +113,15 @@ async function guardarPartitura(event) {
     const partitura = new Partitura(
         partituraId,
         titol,
-        idioma,
-        'ca',
         lletraOriginal,
         lletraTraduccio,
+        idioma,
+        'ca',
         notes
     );
 
     try {
         const resultat = await PartituraService.savePartitura(partitura);
-        window.location.href = "partitures.html";
     } catch (error) {
         console.error(error);
         alert("Error al guardar la partitura.");
@@ -140,19 +139,25 @@ function reproducirSonido(idAudio) {
 function pintarPentagrama() {
     const notes = [
         { nota: "DO", top: 155, audioId: "audio-do" },
+        { nota: "DO#", top: 150, audioId: "audio-do-sust" },
         { nota: "RE", top: 140, audioId: "audio-re" },
+        { nota: "RE#", top: 135, audioId: "audio-re-sust" },
         { nota: "MI", top: 125, audioId: "audio-mi" },
         { nota: "FA", top: 110, audioId: "audio-fa" },
+        { nota: "FA#", top: 105, audioId: "audio-fa-sust" },
         { nota: "SOL", top: 95, audioId: "audio-sol" },
+        { nota: "SOL#", top: 90, audioId: "audio-sol-sust" },
         { nota: "LA", top: 80, audioId: "audio-la" },
+        { nota: "LA#", top: 75, audioId: "audio-la-sust" },
         { nota: "SI", top: 65, audioId: "audio-si" },
         { nota: "DO_AGUT", top: 50, audioId: "audio-do2" },
+        { nota: "DO#_AGUT", top: 45, audioId: "audio-do2-sust" },
     ];
 
     const liniesTop = [15, 45, 75, 105, 135];
     const container = document.getElementById("pentagrama-container");
 
-    container.innerHTML = ''; // Limpiar el pentagrama antes de pintarlo
+    container.innerHTML = '';
 
     for (let i = 0; i < 12; i++) {
         const columna = document.createElement("div");
@@ -253,7 +258,7 @@ function obtenirNotasDelPentagrama() {
             if (zona) {
                 const nom = zona.dataset.note;
                 const type = imgNota.src.includes("sust") ? "sharp" : "regular";
-                const nota = new Note(`${nom}-${index}`, nom, type, index + 1);
+                const nota = new Note(null, nom, type, index + 1);
                 notas.push(nota);
             }
         }

@@ -9,14 +9,14 @@ export function mostrarNotificacio(titol, missatge) {
     if (Notification.permission === "granted") {
         new Notification(titol, {
             body: missatge,
-            icon: "./imgs/logo.png",
+            icon: "./imgs/logo.jpg",
         });
     }else if (Notification.permission !== "denied") {
         Notification.requestPermission().then(permission => {
             if (permission === "granted") {
                 new Notification(titol, {
                     body: missatge,
-                    icon: "./img/logo.png",
+                    icon: "./img/logo.jpg",
                 });
             }
         });

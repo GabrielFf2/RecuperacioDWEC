@@ -1,3 +1,4 @@
+/*
 const CACHE_NAME = "score-finder-cache-v1";
 const FILES_TO_CACHE = [
     "/",
@@ -58,4 +59,4 @@ self.addEventListener("fetch", (event) => {
             return response || fetch(event.request);
         })
     );
-});
+});*/
