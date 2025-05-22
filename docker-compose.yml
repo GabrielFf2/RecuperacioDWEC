@@ -1,0 +1,11 @@
+name: vue
+services:
+  vitesvue:
+    image: node:20
+    tty: true
+    stdin_open: true
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
