@@ -256,9 +256,9 @@ function obtenirNotasDelPentagrama() {
         if (imgNota) {
             const zona = imgNota.closest(".nota-zona");
             if (zona) {
-                const nom = zona.dataset.note;
+                const note = zona.dataset.note;
                 const type = imgNota.src.includes("sust") ? "sharp" : "regular";
-                const nota = new Note(null, nom, type, index + 1);
+                const nota = { note, type };
                 notas.push(nota);
             }
         }
@@ -320,8 +320,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.getElementById("btn-reproduir").addEventListener("click", () => {
-        PartituraService.reproduirMelodia(obtenirNotasDelPentagrama());
+    document.getElementById("btn-reproduir").addEventListener("click", (event) => {
+        const button = event.target;
+        const notes = obtenirNotasDelPentagrama();
+        PartituraService.reproduirPartitura(notes, button);
     });
 
     document.forms['form'].addEventListener('submit', guardarPartitura);
