@@ -1,9 +1,9 @@
 "use strict";
 
-import { tecles } from "../services/TeclesPiano.js";
+import { tecles } from "./TeclesPiano.js";
 import { cercador } from "../services/Cercador.js";
 import { cercadorView } from "./cercadorView.js";
-import { PartituraService } from "../services/PartituraService.js";
+import { PartituraService} from "@/services/PartituraService.js";
 import { mostrarNotificacio } from "../utils/notifications.js";
 import { VideosView } from "./VideosView.js";
 
@@ -33,12 +33,42 @@ export const renderPartitures = (partitures) => {
         `;
 
         const button = resultItem.querySelector(".reproduir");
-        button.addEventListener("click", () => {
-            PartituraService.reproduirPartitura(partitura.notes, button);
-        });
+        button.addEventListener("click", () => handleReproduirClick(partitura, button));
+
 
         partituresContainer.appendChild(resultItem);
     });
+};
+
+const handleReproduirClick = (partitura, button) => {
+    let delay = 0;
+    const duracio = partitura.notes.length * 1000;
+    let tempsFaltant = duracio / 1000;
+
+    button.textContent = `${tempsFaltant}s`;
+    button.disabled = true;
+
+    const interval = setInterval(() => {
+        tempsFaltant -= 0.1;
+        button.textContent = `${tempsFaltant.toFixed(2)}s`;
+    }, 100);
+
+    partitura.notes.forEach((nota) => {
+        setTimeout(() => {
+            const audio = document.getElementById(`audio-${nota.nom}`);
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        }, delay);
+        delay += 1000;
+    });
+
+    setTimeout(() => {
+        clearInterval(interval);
+        button.textContent = "Reproduir cançó";
+        button.disabled = false;
+    }, duracio);
 };
 
 

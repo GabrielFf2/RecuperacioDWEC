@@ -17,7 +17,7 @@ export const RecordingService = {
         return { mediaRecorder, recordedChunks };
     },
 
-    stopRecording: (mediaRecorder, recordedChunks, videoElement) => {
+    stopRecording: (mediaRecorder, recordedChunks) => {
         mediaRecorder.stop();
 
         return new Promise((resolve) => {

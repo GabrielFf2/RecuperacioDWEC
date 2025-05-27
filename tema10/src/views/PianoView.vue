@@ -57,7 +57,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
-import { tecles } from "@/services/TeclesPiano.js";
+import { tecles } from "@/viewJs/TeclesPiano.js";
 import { cercador } from "@/services/Cercador.js";
 import { PartituraService } from "@/services/PartituraService.js";
 import { VideosView } from "@/viewJs/VideosView.js";

@@ -122,35 +122,19 @@ export const PartituraService = {
         cerca.push(new Note(nom, sostingut));
     },
 
-    reproduirPartitura(notes, button) {
+    reproduirNotes(notes, onPlayNote) {
         let delay = 0;
-        const duracio = notes.length * 1000;
-        let tempsFaltant = duracio / 1000;
-
-        button.textContent = `${tempsFaltant}s`;
-        button.disabled = true;
-
-        const interval = setInterval(() => {
-            tempsFaltant -= 0.1;
-            button.textContent = `${tempsFaltant.toFixed(2)}s`;
-        }, 100);
 
         notes.forEach((nota) => {
             setTimeout(() => {
-                const audio = document.getElementById(`audio-${nota.nom}`);
-                if (audio) {
-                    audio.currentTime = 0;
-                    audio.play();
+                if (typeof onPlayNote === "function") {
+                    onPlayNote(nota);
                 }
             }, delay);
             delay += 1000;
         });
 
-        setTimeout(() => {
-            clearInterval(interval);
-            button.textContent = "Reproduir cançó";
-            button.disabled = false;
-        }, duracio);
+        return notes.length * 1000;
     },
 
     cercador(partitures, input) {

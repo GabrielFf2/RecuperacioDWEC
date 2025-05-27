@@ -35,10 +35,10 @@ export const tecles = (cercaActual, updateCercadorInput) => {
             ordre: cercaActual.length + 1,
         };
         cercaActual.push(novaNota);
-        updateCercadorInput([...cercaActual]); // envía copia reactiva
+        updateCercadorInput([...cercaActual]);
     };
 
-    // En Vue, usa event listeners de forma que no duplique si se monta/desmonta
+
     const onClickKey = (event) => {
         const nota = event.target.getAttribute("data-note");
         if (nota) playNote(nota);
@@ -49,7 +49,7 @@ export const tecles = (cercaActual, updateCercadorInput) => {
         if (nota) playNote(nota);
     };
 
-    // Devuelve funciones para montar y desmontar listeners (útil en Vue)
+
     return {
         mount: () => {
             document.querySelectorAll(".key").forEach((button) => {

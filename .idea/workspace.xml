@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="falta tota la migracio del piano">
-      <change afterPath="$PROJECT_DIR$/tema10/public/imgs/134486-759714562_small.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tema10/src/views/loginVue.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema10/src/views/AndimView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema10/src/services/PartituraService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/services/PartituraService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema10/src/services/Partitures.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema10/src/services/RecordingService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/services/RecordingService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema10/src/services/TeclesPiano.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/viewJs/TeclesPiano.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema10/src/viewJs/partitures.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/viewJs/partitures.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema10/src/viewJs/piano.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/viewJs/piano.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema10/src/views/PianoView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/views/PianoView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,32 +61,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Docker.docker-compose.yml.vitesvue: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Docker.tema10: Compose Deployment.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "t10",
-    "last_opened_file_path": "/home/gabri/Daw2/RecuperacioDWEC/tema10/src/views",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "web.server",
-    "ts.external.directory.path": "/home/gabri/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Docker.docker-compose.yml.vitesvue: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.tema10: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;t10&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/gabri/Daw2/RecuperacioDWEC/tema10/src/views&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;web.server&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/gabri/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Composition API Component"
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tema10/src/views" />
@@ -193,7 +196,8 @@
       <workItem from="1747931577773" duration="1471000" />
       <workItem from="1747985745015" duration="1353000" />
       <workItem from="1747989076675" duration="3831000" />
-      <workItem from="1748356526672" duration="5106000" />
+      <workItem from="1748356526672" duration="5438000" />
+      <workItem from="1748363809613" duration="1008000" />
     </task>
     <task id="LOCAL-00001" summary="html i css creat amb estils molt basics">
       <option name="closed" value="true" />
@@ -483,7 +487,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747992683814</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="falta tota la migracio del piano">
+      <option name="closed" value="true" />
+      <created>1748361835531</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1748361835531</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
