@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const token = await LoginService.login(usuari, password);
-            console.log('Token guardado:', token);
+            await LoginService.login(usuari, password);
+            window.location.href = 'dashboard.html'; // Redirigeix a la pàgina principal
         } catch (error) {
             document.getElementById('loginError').textContent = error.message || 'Error d\'autenticació.';
         }

@@ -1,0 +1,94 @@
+Index: views/login.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>document.getElementById('loginForm').addEventListener('submit', async (event) => {\n    event.preventDefault();\n\n    const usuari = document.getElementById('usuari').value.trim();\n    const password = document.getElementById('password').value;\n\n    const data = { usuari, password };\n\n    try {\n        const loginResponse = await fetch('https://theteacher.codiblau.com/piano/auth/login', {\n            method: 'POST',\n            headers: {\n                'Content-Type': 'application/json'\n            },\n            body: JSON.stringify(data)\n        });\n\n        if (!loginResponse.ok) {\n            const errorResult = await loginResponse.json();\n            alert(errorResult.message);\n            return;\n        }\n\n        const token = await loginResponse.text();\n        localStorage.setItem('authToken', token);\n\n        const userResponse = await fetch('https://theteacher.codiblau.com/piano/user/get', {\n            method: 'POST',\n            headers: {\n                'Authorization': token\n            }\n        });\n\n        if (!userResponse.ok) {\n            throw new Error('Error obtenint les dades de l\\'usuari.');\n        }\n\n        const userData = await userResponse.json();\n        localStorage.setItem('userData', JSON.stringify(userData));\n        alert('Sessió iniciada correctament!');\n        window.close();\n    } catch (error) {\n        console.error('Error en el procés de login:', error);\n        alert('Hi ha hagut un error. Revisa la consola per més detalls.');\n    }\n});
+===================================================================
+diff --git a/views/login.js b/views/login.js
+--- a/views/login.js	(revision cd4fcc8b0206e3b69037ac9b4ee1a34b90d3606a)
++++ b/views/login.js	(date 1747133318185)
+@@ -1,46 +1,44 @@
+-document.getElementById('loginForm').addEventListener('submit', async (event) => {
+-    event.preventDefault();
++document.addEventListener('DOMContentLoaded', () => {
++    const loginForm = document.getElementById('loginForm');
+ 
+-    const usuari = document.getElementById('usuari').value.trim();
+-    const password = document.getElementById('password').value;
++    loginForm.addEventListener('submit', async (e) => {
++        e.preventDefault();
++
++        const usuari = document.getElementById('usuari').value;
++        const password = document.getElementById('password').value;
+ 
+-    const data = { usuari, password };
+-
+-    try {
+-        const loginResponse = await fetch('https://theteacher.codiblau.com/piano/auth/login', {
+-            method: 'POST',
+-            headers: {
+-                'Content-Type': 'application/json'
+-            },
+-            body: JSON.stringify(data)
+-        });
++        try {
++            const response = await fetch('https://theteacher.codiblau.com/piano/auth/login', {
++                method: 'POST',
++                headers: { 'Content-Type': 'application/json' },
++                body: JSON.stringify({ usuari, password })
++            });
+ 
+-        if (!loginResponse.ok) {
+-            const errorResult = await loginResponse.json();
+-            alert(errorResult.message);
+-            return;
+-        }
++            if (response.ok) {
++                const token = await response.text();
++                localStorage.setItem('token', token);
+ 
+-        const token = await loginResponse.text();
+-        localStorage.setItem('authToken', token);
+-
+-        const userResponse = await fetch('https://theteacher.codiblau.com/piano/user/get', {
+-            method: 'POST',
+-            headers: {
+-                'Authorization': token
+-            }
+-        });
++                // Obtener datos del usuario
++                const userResponse = await fetch('https://theteacher.codiblau.com/piano/user/get', {
++                    method: 'POST',
++                    headers: { 'Authorization': token }
++                });
+ 
+-        if (!userResponse.ok) {
+-            throw new Error('Error obtenint les dades de l\'usuari.');
+-        }
+-
+-        const userData = await userResponse.json();
+-        localStorage.setItem('userData', JSON.stringify(userData));
+-        alert('Sessió iniciada correctament!');
+-        window.close();
+-    } catch (error) {
+-        console.error('Error en el procés de login:', error);
+-        alert('Hi ha hagut un error. Revisa la consola per més detalls.');
+-    }
++                if (userResponse.ok) {
++                    const userData = await userResponse.json();
++                    localStorage.setItem('user', JSON.stringify(userData));
++                    alert('Login correcto. Bienvenido, ' + userData.nom);
++                    window.location.href = 'piano.html';
++                } else {
++                    alert('Error obteniendo datos del usuario.');
++                }
++            } else {
++                const error = await response.json();
++                alert(error.missatge || 'Error de autenticación.');
++            }
++        } catch (err) {
++            console.error('Error:', err);
++            alert('Error en la conexión con el servidor.');
++        }
++    });
+ });
+\ No newline at end of file

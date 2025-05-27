@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="falta tota la migracio del piano">
+      <change afterPath="$PROJECT_DIR$/tema10/public/imgs/134486-759714562_small.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema10/src/views/loginVue.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema10/src/views/AndimView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema10/src/views/PianoView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/views/PianoView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="Vue Composition API Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="T08" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;GabrielFf2&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/GabrielFf2/RecuperacioDWEC.git&quot;,
+    &quot;accountId&quot;: &quot;5c577669-6ec8-4003-83c9-85703995c163&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2vAK3w3hZCQFs0a940yX2GWUxYs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Docker.docker-compose.yml.vitesvue: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.tema10: Compose Deployment.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "t10",
+    "last_opened_file_path": "/home/gabri/Daw2/RecuperacioDWEC/tema10/src/views",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "web.server",
+    "ts.external.directory.path": "/home/gabri/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tema10/src/views" />
+      <recent name="$PROJECT_DIR$/tema10/public/imgs" />
+      <recent name="$PROJECT_DIR$/tema10/src" />
+      <recent name="$PROJECT_DIR$/tema10/src/assets" />
+      <recent name="$PROJECT_DIR$/tema10/public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tema10/src/viewJs" />
+      <recent name="$PROJECT_DIR$/tema10" />
+      <recent name="$PROJECT_DIR$/tema10/public" />
+      <recent name="$PROJECT_DIR$/tema10/src" />
+      <recent name="$PROJECT_DIR$/recu/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.vitesvue: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="vitesvue" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="tema10: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="tema10/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.tema10: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.vitesvue: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.vitesvue: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PS-251.25410.148" />
+        <option value="bundled-php-predefined-a98d8de5180a-c5828cf854d9-com.jetbrains.php.sharedIndexes-PS-251.25410.148" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="" />
+      <created>1743582243175</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743582243175</updated>
+      <workItem from="1743582244455" duration="6246000" />
+      <workItem from="1743692045744" duration="6209000" />
+      <workItem from="1743752392119" duration="5120000" />
+      <workItem from="1743947419439" duration="5135000" />
+      <workItem from="1744305712457" duration="1872000" />
+      <workItem from="1744357344264" duration="6730000" />
+      <workItem from="1745333419838" duration="2314000" />
+      <workItem from="1745676857009" duration="5436000" />
+      <workItem from="1745850903709" duration="3006000" />
+      <workItem from="1745943312224" duration="6156000" />
+      <workItem from="1746000534950" duration="4946000" />
+      <workItem from="1746539052336" duration="6119000" />
+      <workItem from="1746981056188" duration="2398000" />
+      <workItem from="1747037329274" duration="4033000" />
+      <workItem from="1747133164815" duration="2852000" />
+      <workItem from="1747229587838" duration="15851000" />
+      <workItem from="1747297292338" duration="2364000" />
+      <workItem from="1747302623664" duration="81000" />
+      <workItem from="1747322394907" duration="5398000" />
+      <workItem from="1747339132407" duration="1644000" />
+      <workItem from="1747381591929" duration="937000" />
+      <workItem from="1747487634495" duration="7010000" />
+      <workItem from="1747817694115" duration="1562000" />
+      <workItem from="1747903622078" duration="1326000" />
+      <workItem from="1747905906912" duration="313000" />
+      <workItem from="1747906221358" duration="3679000" />
+      <workItem from="1747926719587" duration="4713000" />
+      <workItem from="1747931437810" duration="139000" />
+      <workItem from="1747931577773" duration="1471000" />
+      <workItem from="1747985745015" duration="1353000" />
+      <workItem from="1747989076675" duration="3831000" />
+      <workItem from="1748356526672" duration="5106000" />
+    </task>
+    <task id="LOCAL-00001" summary="html i css creat amb estils molt basics">
+      <option name="closed" value="true" />
+      <created>1743583763661</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743583763661</updated>
+    </task>
+    <task id="LOCAL-00002" summary="inici amb js">
+      <option name="closed" value="true" />
+      <created>1743585011514</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743585011514</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Cercador funcional">
+      <option name="closed" value="true" />
+      <created>1743588350954</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743588350954</updated>
+    </task>
+    <task id="LOCAL-00004" summary="T01 fi">
+      <option name="closed" value="true" />
+      <created>1743692346595</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1743692346595</updated>
+    </task>
+    <task id="LOCAL-00005" summary="llistat de partitures fet , falta acabar de etilitzar">
+      <option name="closed" value="true" />
+      <created>1743695020319</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1743695020319</updated>
+    </task>
+    <task id="LOCAL-00006" summary="botons de fontawesome y finstra amb alerts per eliminar una partitura">
+      <option name="closed" value="true" />
+      <created>1743696530000</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743696530000</updated>
+    </task>
+    <task id="LOCAL-00007" summary="pagina de login feta , no em queda centrada la finestra nova ..">
+      <option name="closed" value="true" />
+      <created>1743697758545</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743697758545</updated>
+    </task>
+    <task id="LOCAL-00008" summary="pagina de login feta , no em queda centrada la finestra nova ...">
+      <option name="closed" value="true" />
+      <created>1743752431675</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1743752431675</updated>
+    </task>
+    <task id="LOCAL-00009" summary=".">
+      <option name="closed" value="true" />
+      <created>1743755965217</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743755965217</updated>
+    </task>
+    <task id="LOCAL-00010" summary="el piano ja son y es reprodueixen les cançons">
+      <option name="closed" value="true" />
+      <created>1743948621401</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1743948621401</updated>
+    </task>
+    <task id="LOCAL-00011" summary="timer funcional">
+      <option name="closed" value="true" />
+      <created>1743949764684</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743949764684</updated>
+    </task>
+    <task id="LOCAL-00012" summary="creacio de partitura amb restriccions">
+      <option name="closed" value="true" />
+      <created>1743952534585</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1743952534585</updated>
+    </task>
+    <task id="LOCAL-00013" summary="1r refactor">
+      <option name="closed" value="true" />
+      <created>1744307575413</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1744307575413</updated>
+    </task>
+    <task id="LOCAL-00014" summary="creacio de partitures a piano i mvc">
+      <option name="closed" value="true" />
+      <created>1744363013166</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1744363013166</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactor services">
+      <option name="closed" value="true" />
+      <created>1744364277026</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1744364277026</updated>
+    </task>
+    <task id="LOCAL-00016" summary="refactor services">
+      <option name="closed" value="true" />
+      <created>1745333710407</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1745333710407</updated>
+    </task>
+    <task id="LOCAL-00017" summary="no va be cap peticio">
+      <option name="closed" value="true" />
+      <created>1745335567156</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1745335567156</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fix de peticion formulari amb edicio">
+      <option name="closed" value="true" />
+      <created>1745682142173</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1745682142173</updated>
+    </task>
+    <task id="LOCAL-00019" summary="edicio del cercador , formulario , serveis , tecles etc , em falta una key per utilitzar tinyMCE">
+      <option name="closed" value="true" />
+      <created>1745853900412</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1745853900413</updated>
+    </task>
+    <task id="LOCAL-00020" summary="formulari Funcional">
+      <option name="closed" value="true" />
+      <created>1745949230300</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1745949230300</updated>
+    </task>
+    <task id="LOCAL-00021" summary="formulari Funcional">
+      <option name="closed" value="true" />
+      <created>1746539656358</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1746539656358</updated>
+    </task>
+    <task id="LOCAL-00022" summary="formulari Funcional">
+      <option name="closed" value="true" />
+      <created>1746545169389</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1746545169389</updated>
+    </task>
+    <task id="LOCAL-00023" summary="modal per copiar les lletres funcional">
+      <option name="closed" value="true" />
+      <created>1746983446845</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1746983446845</updated>
+    </task>
+    <task id="LOCAL-00024" summary="modal per copiar les lletres funcional , falta el pentagrama">
+      <option name="closed" value="true" />
+      <created>1747237673988</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1747237673988</updated>
+    </task>
+    <task id="LOCAL-00025" summary="falta poder guardar correctamente una partitura nova">
+      <option name="closed" value="true" />
+      <created>1747245859373</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1747245859373</updated>
+    </task>
+    <task id="LOCAL-00026" summary="to07 fi">
+      <option name="closed" value="true" />
+      <created>1747297897903</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1747297897903</updated>
+    </task>
+    <task id="LOCAL-00027" summary="notifications">
+      <option name="closed" value="true" />
+      <created>1747322508617</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1747322508618</updated>
+    </task>
+    <task id="LOCAL-00028" summary="falta corregir la peticio de notes per audio">
+      <option name="closed" value="true" />
+      <created>1747340754576</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1747340754576</updated>
+    </task>
+    <task id="LOCAL-00029" summary="falta corregir la peticio de notes per audio">
+      <option name="closed" value="true" />
+      <created>1747382519186</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1747382519186</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Falta corregir el login i el cercador">
+      <option name="closed" value="true" />
+      <created>1747906082725</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1747906082725</updated>
+    </task>
+    <task id="LOCAL-00031" summary="error per guardar paritura">
+      <option name="closed" value="true" />
+      <created>1747930351054</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1747930351054</updated>
+    </task>
+    <task id="LOCAL-00032" summary="t08 funcional">
+      <option name="closed" value="true" />
+      <created>1747931297775</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1747931297775</updated>
+    </task>
+    <task id="LOCAL-00033" summary="t08 funcional">
+      <option name="closed" value="true" />
+      <created>1747931635262</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1747931635262</updated>
+    </task>
+    <task id="LOCAL-00034" summary="falta tota la migracio del piano">
+      <option name="closed" value="true" />
+      <created>1747932219984</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1747932219984</updated>
+    </task>
+    <task id="LOCAL-00035" summary="falta tota la migracio del piano">
+      <option name="closed" value="true" />
+      <created>1747988110496</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1747988110496</updated>
+    </task>
+    <task id="LOCAL-00036" summary="falta tota la migracio del piano">
+      <option name="closed" value="true" />
+      <created>1747992683814</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1747992683814</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="llistat de partitures fet , falta acabar de etilitzar" />
+    <MESSAGE value="botons de fontawesome y finstra amb alerts per eliminar una partitura" />
+    <MESSAGE value="pagina de login feta , no em queda centrada la finestra nova .." />
+    <MESSAGE value="pagina de login feta , no em queda centrada la finestra nova ..." />
+    <MESSAGE value="." />
+    <MESSAGE value="el piano ja son y es reprodueixen les cançons" />
+    <MESSAGE value="timer funcional" />
+    <MESSAGE value="creacio de partitura amb restriccions" />
+    <MESSAGE value="1r refactor" />
+    <MESSAGE value="creacio de partitures a piano i mvc" />
+    <MESSAGE value="refactor services" />
+    <MESSAGE value="no va be cap peticio" />
+    <MESSAGE value="fix de peticion formulari amb edicio" />
+    <MESSAGE value="edicio del cercador , formulario , serveis , tecles etc , em falta una key per utilitzar tinyMCE" />
+    <MESSAGE value="formulari Funcional" />
+    <MESSAGE value="modal per copiar les lletres funcional" />
+    <MESSAGE value="modal per copiar les lletres funcional , falta el pentagrama" />
+    <MESSAGE value="falta poder guardar correctamente una partitura nova" />
+    <MESSAGE value="to07 fi" />
+    <MESSAGE value="notifications" />
+    <MESSAGE value="falta corregir la peticio de notes per audio" />
+    <MESSAGE value="Falta corregir el login i el cercador" />
+    <MESSAGE value="error per guardar paritura" />
+    <MESSAGE value="t08 funcional" />
+    <MESSAGE value="falta tota la migracio del piano" />
+    <option name="LAST_COMMIT_MESSAGE" value="falta tota la migracio del piano" />
+  </component>
+</project>
