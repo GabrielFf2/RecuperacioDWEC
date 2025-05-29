@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="falta tota la migracio del piano">
+    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="falta acabar de refactorizar les vistes i serveis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema10/src/services/PartituraService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/services/PartituraService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema10/src/services/Partitures.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema10/src/services/RecordingService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/services/RecordingService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema10/src/services/TeclesPiano.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/viewJs/TeclesPiano.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema10/src/viewJs/partitures.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/viewJs/partitures.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema10/src/viewJs/piano.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/viewJs/piano.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema10/src/views/PianoView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema10/src/views/PianoView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +191,7 @@
       <workItem from="1747985745015" duration="1353000" />
       <workItem from="1747989076675" duration="3831000" />
       <workItem from="1748356526672" duration="5438000" />
-      <workItem from="1748363809613" duration="1008000" />
+      <workItem from="1748363809613" duration="2715000" />
     </task>
     <task id="LOCAL-00001" summary="html i css creat amb estils molt basics">
       <option name="closed" value="true" />
@@ -495,7 +489,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748361835531</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="falta acabar de refactorizar les vistes i serveis">
+      <option name="closed" value="true" />
+      <created>1748364999786</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1748364999786</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +515,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="llistat de partitures fet , falta acabar de etilitzar" />
     <MESSAGE value="botons de fontawesome y finstra amb alerts per eliminar una partitura" />
     <MESSAGE value="pagina de login feta , no em queda centrada la finestra nova .." />
     <MESSAGE value="pagina de login feta , no em queda centrada la finestra nova ..." />
@@ -538,6 +539,7 @@
     <MESSAGE value="error per guardar paritura" />
     <MESSAGE value="t08 funcional" />
     <MESSAGE value="falta tota la migracio del piano" />
-    <option name="LAST_COMMIT_MESSAGE" value="falta tota la migracio del piano" />
+    <MESSAGE value="falta acabar de refactorizar les vistes i serveis" />
+    <option name="LAST_COMMIT_MESSAGE" value="falta acabar de refactorizar les vistes i serveis" />
   </component>
 </project>

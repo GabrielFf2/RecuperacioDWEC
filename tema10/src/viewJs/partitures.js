@@ -125,8 +125,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    const partitures = await PartituraService.getPartitures();
-
     if (!partitures || partitures.length === 0) {
         mostrarNotificacio("Error", "No se encontraron partituras.");
         return;
