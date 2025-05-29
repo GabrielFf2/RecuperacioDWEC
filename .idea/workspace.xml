@@ -4,7 +4,93 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="t10 fi" />
+    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="t10 fi">
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/do-sust.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/do-sust.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/do.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/do.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/do7.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/do7.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/fa-sust.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/fa-sust.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/fa.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/fa.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/la-sust.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/la-sust.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/la.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/la.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/mi.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/mi.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/re-sust.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/re-sust.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/re.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/re.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/si.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/si.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/si0.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/si0.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/sol-sust.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/sol-sust.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/sol.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/audio/sol.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/134486-759714562_small.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/Captura desde 2025-05-15 18-02-46.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/Captura desde 2025-05-15 18-06-56.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/Captura desde 2025-05-15 18-07-11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/fusta.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/logo-192.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/logo-512.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/screenshot-mobile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/public/imgs/screenshot-wide.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/assets/imgs/Captura desde 2025-05-15 18-02-46.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/assets/imgs/Captura desde 2025-05-15 18-06-56.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/assets/imgs/Captura desde 2025-05-15 18-07-11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/assets/imgs/fusta.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/assets/imgs/logo-192.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/assets/imgs/logo-512.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/assets/imgs/logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/assets/imgs/screenshot-mobile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/assets/imgs/screenshot-wide.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/css/creacioPartitures.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/layouts/EmptyLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/layouts/NewLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/model/Idioma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/model/Note.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/model/Partitura.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/notesimg/nota1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/notesimg/nota1sust.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/notesimg/nota2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/notesimg/nota2sust.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/notesimg/pentagrama.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/pages/Login.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/pages/Logout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/pages/PianoView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/pages/Private.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/pages/Signup.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/services/Cercador.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/services/GoogleService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/services/LoginService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/services/PartituraService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/services/RecordingService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/services/TinyMCEService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/services/TraduccionService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/services/TranscripcioService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/services/VideosService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/utils/notifications.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/RecordView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/TeclesPiano.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/VideosView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/cercadorView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/partitures.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/piano.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/registre.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,7 +111,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="t10" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,6 +130,9 @@
     &quot;accountId&quot;: &quot;5c577669-6ec8-4003-83c9-85703995c163&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -61,8 +150,8 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "T11",
-    "last_opened_file_path": "/home/gabri/Daw2/RecuperacioDWEC/tema10/src/views",
+    "git-widget-placeholder": "t11",
+    "last_opened_file_path": "/home/gabri/Daw2/RecuperacioDWEC/tema11/src/css",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,11 +169,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tema10/src/views" />
-      <recent name="$PROJECT_DIR$/tema10/public/imgs" />
-      <recent name="$PROJECT_DIR$/tema10/src" />
-      <recent name="$PROJECT_DIR$/tema10/src/assets" />
-      <recent name="$PROJECT_DIR$/tema10/public" />
+      <recent name="$PROJECT_DIR$/tema11/src/css" />
+      <recent name="$PROJECT_DIR$/tema11/public" />
+      <recent name="$PROJECT_DIR$/tema11/src" />
+      <recent name="$PROJECT_DIR$/tema11/src/assets" />
+      <recent name="$PROJECT_DIR$/tema11/src/pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tema10/src/viewJs" />
