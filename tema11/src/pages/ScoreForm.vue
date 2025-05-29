@@ -1,15 +1,17 @@
 <template>
   <div>
-    <q-form id="creacioPartituraForm" data-idpartitura="" @submit.prevent="submitForm">
+    <q-form ref="formRef" id="creacioPartituraForm" data-idpartitura="" @submit.prevent="submitForm">
       <input type="hidden" id="partitura-id" />
 
       <q-input v-model="title" label="Títol:" id="titol" name="titol" required />
 
       <q-select v-model="language" label="Idioma original:" id="idioma-select" :options="languages" name="idioma" option-value="codi" option-label="nom" required />
 
-      <q-input v-model="originalLyrics" label="Lletra original:" id="lletraOriginal" type="textarea" name="lletraOriginal" />
+      <label for="lletraOriginal">Lletra original:</label>
+      <div id="lletraOriginal"></div>
 
-      <q-input v-model="catalanTranslation" label="Traducció al català:" id="traduccioCatala" type="textarea" name="traduccioCatala" />
+      <label for="traduccioCatala">Traducció al català:</label>
+      <div id="traduccioCatala"></div>
 
       <div id="pentagrama-container"></div>
 
@@ -45,7 +47,12 @@
 <script>
 import { onMounted, ref } from 'vue'
 import * as Formulari from '../viewJs/formulari.js'
-import {GoogleService} from "src/services/GoogleService.js";
+import { GoogleService } from "src/services/GoogleService.js"
+import { TraduccionService } from "src/services/TraduccionService.js"
+import tinymce from 'tinymce'
+import { RecordView } from '../viewJs/RecordView.js'
+import { guardarPartitura } from "../viewJs/formulari.js";
+import {inicialitzarFormulari} from "../viewJs/formulari.js";
 
 export default {
   setup() {
@@ -59,8 +66,9 @@ export default {
     GoogleService.getIdiomes().then(result => {
       languages.value = result
     })
+
     const submitForm = () => {
-      Formulari.guardarPartitura()
+      guardarPartitura()
     }
 
     const startRecording = () => {
@@ -71,9 +79,66 @@ export default {
       notification.value = 'Gravació aturada.'
     }
 
+    const translateLyrics = async () => {
+      const content = tinymce.get('lletraOriginal').getContent()
+      const translation = await TraduccionService.traduir(language.value, content)
+      tinymce.get('traduccioCatala').setContent(translation)
+    }
+
     onMounted(() => {
-      Formulari.inicialitzarFormulari()
-    })
+      const form = document.getElementById("creacioPartituraForm");
+      if (!form) {
+        console.error("El formulario no está disponible en el DOM.");
+        return;
+      }
+
+      inicialitzarFormulari();
+
+      form.addEventListener('submit', submitForm);
+
+      tinymce.init({
+        selector: '#lletraOriginal',
+        base_url: '/node_modules/tinymce',
+        readonly: false,
+        setup(editor) {
+          editor.on('input', () => {
+            originalLyrics.value = editor.getContent();
+            translateLyrics();
+          });
+        }
+      });
+
+      tinymce.init({
+        selector: '#traduccioCatala',
+        base_url: '/node_modules/tinymce',
+        readonly: true
+      });
+
+      const pentagramaContainer = document.getElementById("pentagrama-container");
+      if (pentagramaContainer) {
+        Formulari.pintarPentagrama();
+      }
+
+      const btnReproduir = document.getElementById("btn-reproduir");
+      if (btnReproduir) {
+        btnReproduir.addEventListener("click", (event) => {
+          const button = event.target;
+          const notes = Formulari.obtenirNotasDelPentagrama();
+          Formulari.reproduirPartitura(notes, button);
+        });
+      }
+
+      const startButton = document.getElementById('start-recording');
+      const stopButton = document.getElementById('stop-recording');
+      const notificationElement = document.getElementById('notification');
+
+      if (!startButton || !stopButton || !notificationElement) {
+        console.error('Uno o más elementos no existen en el DOM.');
+        return;
+      }
+
+      RecordView.init();
+    });
 
     return {
       title,
@@ -84,13 +149,13 @@ export default {
       languages,
       submitForm,
       startRecording,
-      stopRecording
+      stopRecording,
+      translateLyrics
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
 @import '../css/creacioPartitures.css';
 </style>
-
