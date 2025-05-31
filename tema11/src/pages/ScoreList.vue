@@ -11,8 +11,8 @@
       <q-item v-for="score in scores" :key="score.idpartitura" clickable @click="openDialog(score)">
         <q-item-section>{{ score.titol }}</q-item-section>
         <q-btn-group>
-          <q-btn flat round icon="edit" @click.stop="editScore(score)" />
-          <q-btn flat round icon="delete" @click.stop="deleteScore(score)" />
+          <q-btn flat round icon="edit" @click="editScore(score)" />
+          <q-btn flat round icon="delete" @click="deleteScore(score)" />
         </q-btn-group>
       </q-item>
     </q-list>
@@ -45,6 +45,9 @@ export default {
     const router = useRouter()
 
 
+    const editScore = (score) => {
+      router.push(`/score-form?id=${score.idpartitura}`);
+    };
     const openDialog = (score) => {
       selectedScore.value = score
       dialogOpen.value = true
@@ -74,7 +77,8 @@ export default {
       dialogOpen,
       selectedScore,
       openDialog,
-      navigateToScoreForm
+      navigateToScoreForm,
+      editScore
     }
   }
 }

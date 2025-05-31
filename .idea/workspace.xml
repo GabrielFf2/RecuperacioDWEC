@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="falta donar les funcions al codig ja sigui traduir o gravar">
-      <change afterPath="$PROJECT_DIR$/tema11/public/notesimg/nota1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tema11/public/notesimg/nota1sust.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tema11/public/notesimg/nota2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tema11/public/notesimg/nota2sust.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tema11/public/notesimg/pentagrama.png" afterDir="false" />
+    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="falla guardar la partitura">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_5_25,_18_32_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_5_25__18_32__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/services/RecordingService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/RecordingService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/services/TinyMCEService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/TinyMCEService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/RecordView.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/RecordView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/pages/ScoreList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,32 +62,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Docker.docker-compose.yml.vitesvue: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Docker.tema10: Compose Deployment.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "t11",
-    "last_opened_file_path": "/home/gabri/Daw2/RecuperacioDWEC/tema11/public",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "web.server",
-    "ts.external.directory.path": "/home/gabri/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Docker.docker-compose.yml.vitesvue: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.tema10: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;t11&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/gabri/Daw2/RecuperacioDWEC/tema11/public&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;web.server&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/gabri/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Composition API Component"
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tema11/public" />
@@ -205,6 +200,7 @@
       <workItem from="1748356526672" duration="5438000" />
       <workItem from="1748363809613" duration="2715000" />
       <workItem from="1748527312191" duration="534000" />
+      <workItem from="1748701411796" duration="5767000" />
     </task>
     <task id="LOCAL-00001" summary="html i css creat amb estils molt basics">
       <option name="closed" value="true" />
@@ -534,7 +530,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748538805698</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="falla guardar la partitura">
+      <option name="closed" value="true" />
+      <created>1748562939843</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1748562939843</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +556,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pagina de login feta , no em queda centrada la finestra nova ..." />
     <MESSAGE value="." />
     <MESSAGE value="el piano ja son y es reprodueixen les cançons" />
     <MESSAGE value="timer funcional" />
@@ -577,6 +580,7 @@
     <MESSAGE value="falta acabar de refactorizar les vistes i serveis" />
     <MESSAGE value="t10 fi" />
     <MESSAGE value="falta donar les funcions al codig ja sigui traduir o gravar" />
-    <option name="LAST_COMMIT_MESSAGE" value="falta donar les funcions al codig ja sigui traduir o gravar" />
+    <MESSAGE value="falla guardar la partitura" />
+    <option name="LAST_COMMIT_MESSAGE" value="falla guardar la partitura" />
   </component>
 </project>

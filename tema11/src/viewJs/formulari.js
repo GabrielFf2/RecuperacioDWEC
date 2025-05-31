@@ -4,16 +4,6 @@ import { TraduccionService } from "../services/TraduccionService.js";
 import { TinyMCEService } from "../services/TinyMCEService.js";
 import { tinymce } from "tinymce";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("creacioPartituraForm");
-  if (!form) {
-    console.error("El formulario no está disponible en el DOM.");
-    return;
-  }
-
-  inicialitzarFormulari();
-});
-
 export function inicialitzarFormulari() {
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("creacioPartituraForm");
@@ -78,9 +68,7 @@ function inicialitzarTraduccioAutomatica() {
   }
 }
 
-function validarLletraTraduccio() {
-
-  inicialitzarFormulari()
+export function validarLletraTraduccio() {
 
   const form = document.forms['form'];
   if (!form || !form['idioma']) {
@@ -88,7 +76,15 @@ function validarLletraTraduccio() {
     return false;
   }
 
+  for (let element of form.elements) {
+    console.log(element.name, element.value);
+  }
+
   const idioma = form['idioma'].value;
+  if (!idioma) {
+    console.error("El campo 'idioma' no está disponible en el formulario.");
+    return false;
+  }
   const editorLletraOriginal = tinymce.get('lletraOriginal');
   const editorTraduccioCatala = tinymce.get('traduccioCatala');
 
@@ -307,7 +303,7 @@ export function pintarPentagrama() {
   }
 }
 
-function obtenirNotasDelPentagrama() {
+export function obtenirNotasDelPentagrama() {
   const columnas = document.querySelectorAll(".columna-wrapper");
   const notas = [];
 
