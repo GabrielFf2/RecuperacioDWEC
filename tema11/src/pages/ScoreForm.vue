@@ -89,8 +89,8 @@ export default {
         name: titol,
         idiomaoriginal: idioma,
         idiomatraduccio: 'ca',
-        lletraoriginal: lletraOriginal,
-        lletratraduccio: lletraTraduccio,
+        partituraoriginal: lletraOriginal,
+        partituratraduccio: lletraTraduccio,
         notes,
       };
 

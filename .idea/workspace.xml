@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="falla guardar la partitura">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_5_25,_18_32_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_5_25__18_32__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/model/Note.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/model/Note.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/pages/ScoreList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,6 +199,7 @@
       <workItem from="1748363809613" duration="2715000" />
       <workItem from="1748527312191" duration="534000" />
       <workItem from="1748701411796" duration="5767000" />
+      <workItem from="1749025663622" duration="1673000" />
     </task>
     <task id="LOCAL-00001" summary="html i css creat amb estils molt basics">
       <option name="closed" value="true" />

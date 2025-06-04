@@ -3,6 +3,7 @@ import { PartituraService } from "../services/PartituraService.js";
 import { TraduccionService } from "../services/TraduccionService.js";
 import { TinyMCEService } from "../services/TinyMCEService.js";
 import { tinymce } from "tinymce";
+import { Note } from 'src/model/Note.js'
 
 export function inicialitzarFormulari() {
   document.addEventListener("DOMContentLoaded", () => {
@@ -312,10 +313,12 @@ export function obtenirNotasDelPentagrama() {
     if (imgNota) {
       const zona = imgNota.closest(".nota-zona");
       if (zona) {
-        const note = zona.dataset.note;
-        const type = imgNota.src.includes("sust") ? "sharp" : "regular";
-        const nota = { note, type };
-        notas.push(nota);
+        const nom = zona.dataset.note;
+        const alteracio = imgNota.src.includes("sust") ? "sharp" : "regular";
+
+        let noota = new Note(null , nom , alteracio);
+
+        notas.push(noota);
       }
     }
   });
