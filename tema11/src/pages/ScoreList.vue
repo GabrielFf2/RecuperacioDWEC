@@ -9,7 +9,7 @@
 
     <q-list bordered class="q-mt-md q-mx-md">
       <q-item v-for="score in scores" :key="score.idpartitura" clickable @click="openDialog(score)">
-        <q-item-section>{{ score.titol }}</q-item-section>
+        <q-item-section>{{ score.name }}</q-item-section>
         <q-btn-group>
           <q-btn flat round icon="edit" @click="editScore(score)" />
           <q-btn flat round icon="delete" @click="deleteScore(score)" />

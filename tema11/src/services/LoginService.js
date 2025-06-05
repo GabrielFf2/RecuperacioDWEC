@@ -1,7 +1,5 @@
 'use strict';
 
-import { mostrarNotificacio } from "../utils/notifications.js";
-
 export class LoginService {
 
     static async login(usuari, password) {

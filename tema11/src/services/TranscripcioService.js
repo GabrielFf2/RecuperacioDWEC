@@ -26,52 +26,64 @@ const sostenidoMap = {
 };
 
 export function interpretaTranscripcio(transcripcio, confianca) {
-    if (confianca < 0.4) {
-        return { notes: [], errors: ["Confiança massa baixa per interpretar la nota."] };
+  if (confianca < 0.4) {
+    return { notes: [], errors: ["Confiança massa baixa per interpretar la nota."] };
+  }
+
+  const normalitzada = transcripcio.toLowerCase().trim();
+  const palabras = normalitzada.split(" ");
+  const notesDetectades = [];
+  const errors = [];
+
+  let i = 0;
+  while (i < palabras.length) {
+    let combinacionDoble = palabras[i];
+    if (i + 1 < palabras.length) {
+      combinacionDoble += " " + palabras[i + 1];
     }
 
-    const normalitzada = transcripcio.toLowerCase().trim();
-    const palabras = normalitzada.split(" ");
-    const notesDetectades = [];
-    const errors = [];
+    let trobada = false;
 
-    let i = 0;
-    while (i < palabras.length) {
-        let combinacionDoble = palabras[i];
-        if (i + 1 < palabras.length) {
-            combinacionDoble += " " + palabras[i + 1];
-        }
-
-        let trobada = false;
-
-        for (const [nota, variants] of Object.entries(equivalenciasNotes)) {
-            if (variants.includes(combinacionDoble)) {
-                notesDetectades.push(nota);
-                i += 2;
-                trobada = true;
-                break;
-            }
-        }
-
-        if (!trobada) {
-            for (const [nota, variants] of Object.entries(equivalenciasNotes)) {
-                if (variants.includes(palabras[i])) {
-                    notesDetectades.push(nota);
-                    trobada = true;
-                    break;
-                }
-            }
-
-            if (trobada) {
-                i += 1;
-            } else {
-                errors.push(`No s'ha pogut reconèixer la nota: "${palabras[i]}"`);
-                i += 1;
-            }
-        }
+    for (const [nota, variants] of Object.entries(equivalenciasNotes)) {
+      if (variants.includes(combinacionDoble)) {
+        notesDetectades.push({
+          idnota: null,
+          figura: 'NEGRE',
+          alteracio: 'NORMAL',
+          nom: nota.toUpperCase(),
+          ordre: notesDetectades.length + 1
+        });
+        i += 2;
+        trobada = true;
+        break;
+      }
     }
 
-    const notesFinals = notesDetectades.map(nota => sostenidoMap[nota] || nota);
+    if (!trobada) {
+      for (const [nota, variants] of Object.entries(equivalenciasNotes)) {
+        if (variants.includes(palabras[i])) {
+          notesDetectades.push({
+            idnota: null,
+            figura: 'NEGRE',
+            alteracio: 'NORMAL',
+            nom: nota.toUpperCase(),
+            ordre: notesDetectades.length + 1
+          });
+          trobada = true;
+          break;
+        }
+      }
 
-    return { notes: notesFinals, errors };
+      if (trobada) {
+        i += 1;
+      } else {
+        errors.push(`No s'ha pogut reconèixer la nota: "${palabras[i]}"`);
+        i += 1;
+      }
+    }
+  }
+
+  const notesFinals = notesDetectades.map(nota => sostenidoMap[nota.nom] || nota);
+
+  return { notes: notesFinals, errors };
 }

@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="fi11">
+      <change afterPath="$PROJECT_DIR$/tema11/src/viewJs/reproduirSo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/pages/ScoreList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/services/LoginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/LoginService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/services/PartituraService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/PartituraService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/services/TinyMCEService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/TinyMCEService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/services/TraduccionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/TraduccionService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/services/VideosService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/VideosView.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/VideosView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/registre.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/registre.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/services/TranscripcioService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/TranscripcioService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/piano.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/piano.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="Vue Composition API Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -40,7 +38,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="MIXED" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -82,6 +80,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/home/gabri/Daw2/RecuperacioDWEC/tema11/node_modules/prettier",
     "settings.editor.selected.configurable": "web.server",
     "ts.external.directory.path": "/home/gabri/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
