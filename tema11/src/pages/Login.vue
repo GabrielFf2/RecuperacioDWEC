@@ -30,7 +30,7 @@ export default {
     async handleLogin() {
       try {
         await LoginService.login(this.usuari, this.password);
-        this.$router.push("/private");
+        this.$router.push("/score-list");
       } catch {
         this.errorMessage = "Error d'autenticació. Revisa les teves credencials.";
       }

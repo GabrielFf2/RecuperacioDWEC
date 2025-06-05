@@ -28,7 +28,7 @@ export const renderPartitures = (partitures) => {
         resultItem.setAttribute("data-lletraoriginal", partitura.lletraoriginal || "");
         resultItem.setAttribute("data-lletratraduccio", partitura.lletratraduccio || "");
         resultItem.innerHTML = `
-            <p>${partitura.titol} <a class="lyric">Lletra</a></p>
+            <p>${partitura.name} <a class="lyric">Lletra</a></p>
             <button class="button reproduir">Reproduir cançó</button>
         `;
 

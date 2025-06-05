@@ -22,6 +22,12 @@
           </q-item-section>
           <q-item-section>Partitures</q-item-section>
         </q-item>
+        <q-item clickable @click="navigateTo('/piano')">
+          <q-item-section avatar>
+            <q-icon name="piano" />
+          </q-item-section>
+          <q-item-section>Piano</q-item-section>
+        </q-item>
         <q-item clickable @click="navigateTo('/logout')">
           <q-item-section avatar>
             <q-icon name="power_settings_new" />
