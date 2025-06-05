@@ -1,9 +1,10 @@
 import { GoogleService } from "../services/GoogleService.js";
 import { PartituraService } from "../services/PartituraService.js";
 import { TraduccionService } from "../services/TraduccionService.js";
-import { TinyMCEService } from "../services/TinyMCEService.js";
+import { TinyMCEService } from "./TinyMCEService.js";
 import { tinymce } from "tinymce";
 import { Note } from 'src/model/Note.js'
+import { mostrarNotificacio } from 'src/utils/notifications.js'
 
 export function inicialitzarFormulari() {
   document.addEventListener("DOMContentLoaded", () => {
@@ -57,10 +58,12 @@ function inicialitzarTraduccioAutomatica() {
 
       try {
         const textTraduccio = await TraduccionService.traduir(idioma.value, textOriginal);
+        mostrarNotificacio("Èxit", "Traducció completada correctament.");
         if (editorTraduccioCatala) {
           editorTraduccioCatala.setContent(textTraduccio);
         }
       } catch (error) {
+        mostrarNotificacio('Error', 'Error en la traducció: ' + error.message)
         console.error("Error al traducir:", error);
       }
     });

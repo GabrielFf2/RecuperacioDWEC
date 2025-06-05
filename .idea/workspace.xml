@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="falla guardar la partitura">
+    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="fi11">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/model/Note.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/model/Note.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/services/LoginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/LoginService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/services/PartituraService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/PartituraService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/services/TinyMCEService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/TinyMCEService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/services/TraduccionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/TraduccionService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/services/VideosService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/VideosView.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/VideosView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/registre.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/registre.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,32 +66,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Docker.docker-compose.yml.vitesvue: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.tema10: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;t11&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/gabri/Daw2/RecuperacioDWEC/tema11/public&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;web.server&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/gabri/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Docker.docker-compose.yml.vitesvue: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.tema10: Compose Deployment.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "t11",
+    "last_opened_file_path": "/home/gabri/Daw2/RecuperacioDWEC",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "web.server",
+    "ts.external.directory.path": "/home/gabri/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tema11/public" />
@@ -95,11 +101,11 @@
       <recent name="$PROJECT_DIR$/tema11/src/pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tema11/src/viewJs" />
       <recent name="$PROJECT_DIR$/tema10/src/viewJs" />
       <recent name="$PROJECT_DIR$/tema10" />
       <recent name="$PROJECT_DIR$/tema10/public" />
       <recent name="$PROJECT_DIR$/tema10/src" />
-      <recent name="$PROJECT_DIR$/recu/src" />
     </key>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
@@ -199,7 +205,9 @@
       <workItem from="1748363809613" duration="2715000" />
       <workItem from="1748527312191" duration="534000" />
       <workItem from="1748701411796" duration="5767000" />
-      <workItem from="1749025663622" duration="1673000" />
+      <workItem from="1749025663622" duration="2657000" />
+      <workItem from="1749111918555" duration="281000" />
+      <workItem from="1749118462723" duration="621000" />
     </task>
     <task id="LOCAL-00001" summary="html i css creat amb estils molt basics">
       <option name="closed" value="true" />
@@ -537,7 +545,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748562939843</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="fi11">
+      <option name="closed" value="true" />
+      <created>1749027679266</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1749027679266</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +571,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="." />
     <MESSAGE value="el piano ja son y es reprodueixen les cançons" />
     <MESSAGE value="timer funcional" />
     <MESSAGE value="creacio de partitura amb restriccions" />
@@ -580,6 +595,7 @@
     <MESSAGE value="t10 fi" />
     <MESSAGE value="falta donar les funcions al codig ja sigui traduir o gravar" />
     <MESSAGE value="falla guardar la partitura" />
-    <option name="LAST_COMMIT_MESSAGE" value="falla guardar la partitura" />
+    <MESSAGE value="fi11" />
+    <option name="LAST_COMMIT_MESSAGE" value="fi11" />
   </component>
 </project>

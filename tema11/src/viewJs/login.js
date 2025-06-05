@@ -1,6 +1,7 @@
 'use strict';
 
 import { LoginService } from "../services/LoginService.js";
+import { mostrarNotificacio } from 'src/utils/notifications.js'
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
@@ -18,9 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             await LoginService.login(usuari, password);
-            window.location.href = 'dashboard.html'; // Redirigeix a la pàgina principal
+            mostrarNotificacio("Èxit", "Login correcte.");
+            window.location.href = 'dashboard.html';
         } catch (error) {
-            document.getElementById('loginError').textContent = error.message || 'Error d\'autenticació.';
+          mostrarNotificacio("Error", error.message || "Error d'autenticació.");
+          document.getElementById('loginError').textContent = error.message || 'Error d\'autenticació.';
         }
     });
 });

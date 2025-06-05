@@ -1,8 +1,14 @@
 "use strict";
 
-import { VideosService } from "@/services/VideosService.js";
 
 export const VideosView = {
+
+    getVideos: () => [
+      { id: 1, src: "/imgs/134486-759714562_small.mp4" },
+      { id: 2, src: "/imgs/134486-759714562_small.mp4" },
+      { id: 3, src: "/imgs/134486-759714562_small.mp4" },
+    ],
+
     renderVideos: () => {
         const existingContainer = document.querySelector("#video-container");
         if (existingContainer) {
@@ -12,8 +18,8 @@ export const VideosView = {
         const videoContainer = document.createElement("div");
         videoContainer.id = "video-container";
 
-        const videos = VideosService.getVideos();
-        const videoElements = [];
+      const videos = VideosView.getVideos();
+      const videoElements = [];
 
         videos.forEach((video) => {
             if (video.src.endsWith(".mp4")) {

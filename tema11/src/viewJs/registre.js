@@ -1,4 +1,5 @@
 import { LoginService } from "../services/LoginService.js";
+import { mostrarNotificacio } from 'src/utils/notifications.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('registreForm');
@@ -28,9 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const result = await LoginService.signup(data);
-      alert(result.message || 'Registre completat amb èxit!');
+      mostrarNotificacio("Èxit", result.message || "Registre completat amb èxit!");
     } catch {
-      alert('Hi ha hagut un error en el registre. Torna-ho a intentar.');
+      mostrarNotificacio("Error",  "Error en el registre.");
+
     }
   });
 });

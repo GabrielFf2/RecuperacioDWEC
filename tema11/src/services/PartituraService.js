@@ -44,7 +44,15 @@ export const PartituraService = {
                 throw new Error(`Error: ${response.status} ${response.statusText}`);
             }
 
-            const data = await response.json();
+            const data = (await response.json()).map((partitura) => {
+              return {
+                ...partitura,
+                notes: partitura.notes.map((nota) => ({
+                  ...nota
+                }))
+              };
+            });
+
             data.forEach((partitura) => {
                 partitura.notes.sort((a, b) => a.ordre - b.ordre);
             });
