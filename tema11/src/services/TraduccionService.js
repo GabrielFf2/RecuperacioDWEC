@@ -1,13 +1,7 @@
 'use strict'
 
-import { mostrarNotificacio } from '../utils/notifications.js'
-
 export class TraduccionService {
   static async traduir(languageFrom, text) {
-    if (languageFrom === 'ca') {
-      mostrarNotificacio('Informació', 'El text ja està en català.')
-      return text
-    }
 
     try {
       const response = await fetch(
