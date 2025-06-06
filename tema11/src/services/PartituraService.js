@@ -29,7 +29,7 @@ export const PartituraService = {
           partitura.idiomatraduccio,
           partitura.lletraoriginal,
           partitura.lletratraduccio,
-          partitura.notes.map((nota) => new Note(null, nota.nom, nota.sostingut, null)),
+          partitura.notes.map((nota, idx) => new Note(null, nota.nom, nota.sostingut, idx + 1)).sort((a, b) => a.ordre - b.ordre),
         )
       })
 
@@ -45,13 +45,13 @@ export const PartituraService = {
   },
 
   async getPartitures() {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     if (!token) {
-      console.error('El token no está disponible en localStorage.')
-      return []
+      console.error('El token no está disponible en localStorage.');
+      return [];
     }
 
-    const url = 'https://theteacher.codiblau.com/piano/score/list'
+    const url = 'https://theteacher.codiblau.com/piano/score/list';
     try {
       const fetchResponse = await fetch(url, {
         method: 'POST',
@@ -59,13 +59,13 @@ export const PartituraService = {
           'Content-Type': 'application/json',
           Authorization: token,
         },
-      })
+      });
 
       if (!fetchResponse.ok) {
-        throw new Error(`Error: ${fetchResponse.status} ${fetchResponse.statusText}`)
+        throw new Error(`Error: ${fetchResponse.status} ${fetchResponse.statusText}`);
       }
 
-      const jsonResponse = await fetchResponse.json()
+      const jsonResponse = await fetchResponse.json();
       const data = jsonResponse.map((partitura) => {
         return new Partitura(
           partitura.idpartitura ?? null,
@@ -74,18 +74,19 @@ export const PartituraService = {
           partitura.idiomatraduccio,
           partitura.lletraoriginal,
           partitura.lletratraduccio,
-          partitura.notes.map((nota) => new Note(null, nota.nom, nota.sostingut, null)),
-        )
-      })
+          partitura.notes.map((nota, idx) => {
+            if (nota.ordre == null) {
+              nota.ordre = idx + 1;
+            }
+            return new Note(null, nota.nom, nota.sostingut, nota.ordre);
+          }).sort((a, b) => a.ordre - b.ordre),
+        );
+      });
 
-      data.forEach((partitura) => {
-        partitura.notes.sort((a, b) => a.ordre - b.ordre)
-      })
-
-      return data
+      return data;
     } catch (error) {
-      console.error('Error obtenint les partitures del servidor:', error)
-      return []
+      console.error('Error obtenint les partitures del servidor:', error);
+      return [];
     }
   },
 
@@ -141,7 +142,9 @@ export const PartituraService = {
   async carregarPartitura(id) {
     try {
       const partitures = await this.getPartitures()
-      return partitures.find((p) => p.idpartitura === Number(id))
+      const partitura = partitures.find((p) => p.idpartitura === parseInt(id))
+      console.log('Partitura carregada:', partitura)
+      return partitura
     } catch (error) {
       console.error('Error carregant la partitura:', error)
       throw error

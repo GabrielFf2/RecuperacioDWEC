@@ -61,7 +61,8 @@ import { PartituraService } from "../services/PartituraService.js";
 import { mostrarNotificacio } from 'src/utils/notifications.js';
 import { RecordingService } from 'src/services/RecordingService.js';
 import { interpretaTranscripcio } from 'src/services/TranscripcioService.js';
-import { handleReproduirClick } from 'src/viewJs/reproduirSo.js'
+import { handleReproduirClick } from 'src/viewJs/reproduirSo.js';
+import { RecordView } from 'src/viewJs/RecordView.js';
 
 export default {
   setup() {
@@ -121,7 +122,7 @@ export default {
         console.log('Grabación iniciada');
 
         try {
-          const { mediaRecorder: recorder, recordedChunks: chunks } = await RecordingService.initMediaRecorder();
+          const { mediaRecorder: recorder, recordedChunks: chunks } = await RecordView.initMediaRecorder();
           mediaRecorder.value = recorder;
           recordedChunks.value = chunks;
 

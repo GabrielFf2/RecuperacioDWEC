@@ -5,6 +5,18 @@ import { interpretaTranscripcio } from "../services/TranscripcioService.js";
 import { RecordingService } from "../services/RecordingService.js";
 
 export const RecordView = {
+  initMediaRecorder: async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    const mediaRecorder = new MediaRecorder(stream);
+    const recordedChunks = [];
+
+    mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0) recordedChunks.push(event.data);
+    };
+
+    return { mediaRecorder, recordedChunks };
+  },
+
   init: async () => {
     const startButton = document.getElementById("start-recording");
     const stopButton = document.getElementById("stop-recording");
@@ -13,23 +25,9 @@ export const RecordView = {
     let mediaRecorder = null;
     let recordedChunks = [];
 
-    const initMediaRecorder = async () => {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
-
-      mediaRecorder = new MediaRecorder(stream);
-      recordedChunks = [];
-
-      mediaRecorder.ondataavailable = (event) => {
-        if (event.data.size > 0) {
-          recordedChunks.push(event.data);
-        }
-      };
-    };
-
-    const stopRecording = () => {
+    const stopRecording = async () => {
+      mediaRecorder.stop();
       return new Promise((resolve) => {
-        mediaRecorder.stop();
-
         mediaRecorder.onstop = () => {
           const blob = new Blob(recordedChunks, { type: "audio/webm" });
           resolve(blob);
@@ -37,7 +35,9 @@ export const RecordView = {
       });
     };
 
-    await initMediaRecorder();
+    const { mediaRecorder: recorder, recordedChunks: chunks } = await RecordView.initMediaRecorder();
+    mediaRecorder = recorder;
+    recordedChunks = chunks;
 
     startButton.addEventListener("click", () => {
       recordedChunks.length = 0;
@@ -51,34 +51,23 @@ export const RecordView = {
 
       try {
         const result = await RecordingService.sendRecording(blob);
-        console.log(result);
-
         if (result.confianca >= 0.4) {
           const interpretacio = interpretaTranscripcio(result.transcripcio, result.confianca);
-          console.log("Interpretació:", interpretacio);
-
           if (interpretacio.notes.length > 0) {
             const notesArray = interpretacio.notes.map((nota, index) => ({
               nom: nota.toUpperCase(),
-              ordre: index + 1
+              ordre: index + 1,
             }));
-
             notification.textContent = `Notes reconegudes: ${interpretacio.notes.join(", ")}`;
             carregarNotesAlPentagrama(notesArray);
           } else {
             notification.textContent = "No s'han pogut reconèixer notes amb prou confiança.";
           }
-
-          if (interpretacio.errors.length > 0) {
-            console.warn("Errors de reconeixement:", interpretacio.errors);
-          }
         } else {
           notification.textContent = "Confiança massa baixa per reconèixer notes.";
         }
-
       } catch (error) {
-        console.error("Error en enviar la gravació:", error);
-        notification.textContent = "Error en enviar la gravació.";
+        notification.textContent = "Error en enviar la gravació." + error;
       }
     });
   },

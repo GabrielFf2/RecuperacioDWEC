@@ -308,28 +308,33 @@ export function pintarPentagrama() {
 }
 
 export function obtenirNotasDelPentagrama() {
-  const columnas = document.querySelectorAll(".columna-wrapper");
+  const columnas = Array.from(document.querySelectorAll(".columna-wrapper"));
   const notas = [];
 
-  columnas.forEach((wrapper) => {
+  columnas.forEach((wrapper, index) => {
     const imgNota = wrapper.querySelector(".nota-img");
     if (imgNota) {
       const zona = imgNota.closest(".nota-zona");
       if (zona) {
+        console.log("Zona info:", zona);
+
         const nom = zona.dataset.note;
         const alteracio = imgNota.src.includes("sust") ? "sharp" : "regular";
 
-        let noota = new Note(null , nom , alteracio);
+        const ordre = index + 1;
 
-        notas.push(noota);
+        const nota = new Note(null, nom, alteracio, ordre);
+        notas.push(nota);
       }
     }
   });
+  notas.sort((a, b) => a.ordre - b.ordre);
 
   return notas;
 }
 
 export function carregarNotesAlPentagrama(notas) {
+  console.log(notas);
   notas.forEach((nota) => {
     const columna = document.querySelectorAll(".columna-wrapper")[nota.ordre - 1];
     if (!columna) {

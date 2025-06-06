@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="refactorized">
+    <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="piano arreglat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/pages/PianoView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/PianoView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/ScoreForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/services/PartituraService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/PartituraService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/services/RecordingService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/RecordingService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/RecordView.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/RecordView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/piano.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/piano.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/formulari.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +206,7 @@
       <workItem from="1749111918555" duration="281000" />
       <workItem from="1749118462723" duration="621000" />
       <workItem from="1749151706127" duration="1006000" />
-      <workItem from="1749228753923" duration="4689000" />
+      <workItem from="1749228753923" duration="7604000" />
     </task>
     <task id="LOCAL-00001" summary="html i css creat amb estils molt basics">
       <option name="closed" value="true" />
@@ -576,7 +576,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749200183666</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="piano arreglat">
+      <option name="closed" value="true" />
+      <created>1749233570407</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1749233570407</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,7 +602,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="timer funcional" />
     <MESSAGE value="creacio de partitura amb restriccions" />
     <MESSAGE value="1r refactor" />
     <MESSAGE value="creacio de partitures a piano i mvc" />
@@ -619,6 +626,7 @@
     <MESSAGE value="falla guardar la partitura" />
     <MESSAGE value="fi11" />
     <MESSAGE value="refactorized" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactorized" />
+    <MESSAGE value="piano arreglat" />
+    <option name="LAST_COMMIT_MESSAGE" value="piano arreglat" />
   </component>
 </project>
