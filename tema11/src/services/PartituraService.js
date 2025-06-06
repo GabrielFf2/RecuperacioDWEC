@@ -6,6 +6,44 @@ import { Partitura } from '@/model/Partitura'
 let cerca = reactive([])
 
 export const PartituraService = {
+  async getPartituresNoLogin() {
+    const url = 'https://theteacher.codiblau.com/piano/nologin/score/list'
+    try {
+      const fetchResponse = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+
+      if (!fetchResponse.ok) {
+        throw new Error(`Error: ${fetchResponse.status} ${fetchResponse.statusText}`)
+      }
+
+      const jsonResponse = await fetchResponse.json()
+      const data = jsonResponse.map((partitura) => {
+        return new Partitura(
+          partitura.idpartitura ?? null,
+          partitura.titol,
+          partitura.idiomaoriginal,
+          partitura.idiomatraduccio,
+          partitura.lletraoriginal,
+          partitura.lletratraduccio,
+          partitura.notes.map((nota) => new Note(null, nota.nom, nota.sostingut, null)),
+        )
+      })
+
+      data.forEach((partitura) => {
+        partitura.notes.sort((a, b) => a.ordre - b.ordre)
+      })
+
+      return data
+    } catch (error) {
+      console.error('Error obtenint les partitures del servidor:', error)
+      return []
+    }
+  },
+
   async getPartitures() {
     const token = localStorage.getItem('token')
     if (!token) {

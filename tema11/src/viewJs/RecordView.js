@@ -10,7 +10,34 @@ export const RecordView = {
     const stopButton = document.getElementById("stop-recording");
     const notification = document.getElementById("notification");
 
-    const { mediaRecorder, recordedChunks } = await RecordingService.initMediaRecorder();
+    let mediaRecorder = null;
+    let recordedChunks = [];
+
+    const initMediaRecorder = async () => {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
+
+      mediaRecorder = new MediaRecorder(stream);
+      recordedChunks = [];
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          recordedChunks.push(event.data);
+        }
+      };
+    };
+
+    const stopRecording = () => {
+      return new Promise((resolve) => {
+        mediaRecorder.stop();
+
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(recordedChunks, { type: "audio/webm" });
+          resolve(blob);
+        };
+      });
+    };
+
+    await initMediaRecorder();
 
     startButton.addEventListener("click", () => {
       recordedChunks.length = 0;
@@ -19,7 +46,7 @@ export const RecordView = {
     });
 
     stopButton.addEventListener("click", async () => {
-      const blob = await RecordingService.stopRecording(mediaRecorder, recordedChunks);
+      const blob = await stopRecording();
       notification.textContent = "Gravació aturada. Enviant gravació...";
 
       try {

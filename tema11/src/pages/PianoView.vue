@@ -76,8 +76,9 @@ const updateCercadorInput = (notes) => {
 };
 
 const renderResults = (results) => {
-  console.log(results)
-  renderPartitures(results);};
+  console.log(results);
+  renderPartitures(results);
+};
 
 const clearResults = () => {
   console.log("Resultados limpiados");
@@ -93,21 +94,59 @@ const limpiarBusqueda = () => {
 
 let cercadorInstance;
 
+const initializeModalHandlers = () => {
+  const copyOriginalButton = document.getElementById("copy-original");
+  const copyTranslatedButton = document.getElementById("copy-translated");
+  const modal = document.getElementById("modal");
+  const closeModal = document.getElementById("close-modal");
+
+  if (!copyOriginalButton || !copyTranslatedButton) {
+    console.error("Los botones de copiar no existen en el DOM.");
+    return;
+  }
+
+  copyOriginalButton.addEventListener("click", () => {
+    const text = document.getElementById("original-lyrics")?.textContent?.trim();
+    console.log("Texto original:", text);
+    if (text) navigator.clipboard.writeText(text);
+  });
+
+  copyTranslatedButton.addEventListener("click", () => {
+    const text = document.getElementById("translated-lyrics")?.textContent?.trim();
+    console.log("Texto traducido:", text);
+    if (text) navigator.clipboard.writeText(text);
+  });
+
+  if (!closeModal) {
+    console.error("El botón de cerrar modal no existe en el DOM.");
+    return;
+  }
+
+  closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+};
+
 onMounted(async () => {
   teclesController = tecles(cercaActual.value, updateCercadorInput);
   teclesController.mount();
 
-  partitures.value = await PartituraService.getPartitures();
+  partitures.value = await PartituraService.getPartituresNoLogin();
 
   cercadorInstance = cercador(
-      cercaActual.value,
-      partitures.value,
-      updateCercadorInput,
-      renderResults,
-      clearResults
+    cercaActual.value,
+    partitures.value,
+    updateCercadorInput,
+    renderResults,
+    clearResults
   );
 
   VideosView.renderVideos();
+  renderPartitures(partitures.value);
+
+  // Inicializa los manejadores de eventos del modal
+  initializeModalHandlers();
 });
 
 onBeforeUnmount(() => {
@@ -115,13 +154,12 @@ onBeforeUnmount(() => {
 });
 </script>
 
-
 <style>
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-image: url('@/assets/imgs/fusta.jpg');}
-
+  background-image: url('@/assets/imgs/fusta.jpg');
+}
 .piano {
   display: flex;
   justify-content: center;
@@ -241,10 +279,16 @@ body {
   gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
+  height: 350px;
+  position: relative;
 }
 
 .video-player {
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+#q-app {
+  margin-top: 230px;
 }
 </style>

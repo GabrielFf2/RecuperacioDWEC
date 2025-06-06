@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3f247132-08e7-4474-97d6-d27588d0da56" name="Changes" comment="refactorized">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/layouts/NewLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/layouts/NewLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema11/src/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/pages/PianoView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/pages/PianoView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/services/PartituraService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/PartituraService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/services/RecordingService.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/services/RecordingService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/RecordView.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/RecordView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tema11/src/viewJs/piano.js" beforeDir="false" afterPath="$PROJECT_DIR$/tema11/src/viewJs/piano.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +71,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;t11&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;T11&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/gabri/Daw2/RecuperacioDWEC&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -204,6 +206,7 @@
       <workItem from="1749111918555" duration="281000" />
       <workItem from="1749118462723" duration="621000" />
       <workItem from="1749151706127" duration="1006000" />
+      <workItem from="1749228753923" duration="4689000" />
     </task>
     <task id="LOCAL-00001" summary="html i css creat amb estils molt basics">
       <option name="closed" value="true" />
@@ -557,7 +560,23 @@
       <option name="project" value="LOCAL" />
       <updated>1749145346699</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="refactorized">
+      <option name="closed" value="true" />
+      <created>1749199175312</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1749199175312</updated>
+    </task>
+    <task id="LOCAL-00046" summary="refactorized">
+      <option name="closed" value="true" />
+      <created>1749200183666</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1749200183666</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
